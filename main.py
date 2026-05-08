@@ -1,10 +1,14 @@
 # welcome 
 import random
-Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco's Room", "Gymnasium", "Library", "Henriques's Engineering", "Pool", ]
-character_list = []
-Body_Room = random.choice(Murderedrooms_list)
+Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof", ]
+character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
+
 
 def initialize():
+    Body_Room = random.choice(Murderedrooms_list)
+    Murderer = random.choice(character_list)
+    print(Murderer)
+
     intro_writing = ["You awake from your shallow rest with a start. ",
     "It took a few moments for you to realize where you were: you're not used to sleeping in a supply closet.",
     "To be fair, you weren’t meant to be in a supply closet at all. You barricaded yourself in here so you could rest safely.",
@@ -23,6 +27,3 @@ def initialize():
     if input("Type X and press the Enter key to continue:"):
         print("Intro Complete!")
 initialize()
-
-
-
