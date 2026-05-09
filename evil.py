@@ -9,55 +9,42 @@ class char:
         self.room = room
         self.weapon = weapon
     def display(self):
-        print(self.full_name, self.room, self.weapon)
+        info = (f"Murderer: {self.full_name}\nRoom: {self.room}\nWeapon: {self.weapon}")
+        return info
+    
+def weaponn():
+    w = random.choice(weapon)
+    weapon.remove(w)
+    return w
 
-""" characters = [
-    {"cecil": char("Cecil Gershwin Palmer", "Cecil", random.choice(room), random.choice(weapon))},
-    {"fulgrim" : char("Fulgrim", "Fulgrim", random.choice(room), random.choice(weapon))},
-    {"jon" : char("Jonathan Sims", "Jon", random.choice(room), random.choice(weapon))},
-    {"whalen" :char("Mr. Whalen", "Mr. Whalen", random.choice(room), random.choice(weapon))},
-    {"wizard" : char("The Wizards is an Animal", "Wizard", random.choice(room), random.choice(weapon))},
-    {"sydney" : char("Sydney Sargent", "Sydney", random.choice(room), random.choice(weapon))},
-    {"house" : char("Doctor House", "House", random.choice(room), random.choice(weapon))},
-    {"kevin" : char("The Great and Mighty Kevin", "Kevin", random.choice(room), random.choice(weapon))},
-] """
+cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(room), weaponn)
+fulgrim= char("Fulgrim", "Fulgrim", random.choice(room), weaponn)
+jon= char("Jonathan Sims", "Jon", random.choice(room), weaponn)
+whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(room), weaponn)
+wizard = char("The Wizards is an Animal", "Wizard", random.choice(room), weaponn)
+sydney = char("Sydney Sargent", "Sydney", random.choice(room), weaponn)
+house = char("Dr. Gregory House", "House", random.choice(room), weaponn)
+kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(room), weaponn)
 
 characters = [
     {"name": "cecil",
-     "val": char("Cecil Gershwin Palmer", "Cecil", random.choice(room), random.choice(weapon))},
+     "val": cecil.display()},
     {"name": "fulgrim", 
-     "val" : char("Fulgrim", "Fulgrim", random.choice(room), random.choice(weapon))},
+     "val" : fulgrim.display()},
     {"name": "jon",
-     "val" : char("Jonathan Sims", "Jon", random.choice(room), random.choice(weapon))},
-    {"whalen" :char("Mr. Whalen", "Mr. Whalen", random.choice(room), random.choice(weapon))},
-    {"wizard" : char("The Wizards is an Animal", "Wizard", random.choice(room), random.choice(weapon))},
-    {"sydney" : char("Sydney Sargent", "Sydney", random.choice(room), random.choice(weapon))},
-    {"house" : char("Doctor House", "House", random.choice(room), random.choice(weapon))},
-    {"kevin" : char("The Great and Mighty Kevin", "Kevin", random.choice(room), random.choice(weapon))},
+     "val" : jon.display()},
+    {"name":"whalen",
+     "val" : whalen.display()},
+    {"name":"wizard",
+     "val" : wizard.display()},
+    {"name":"sydney",
+     "val" : sydney.display()},
+    {"name":"house",
+     "val" : house.display()},
+    {"name":"kevin",
+     "val" : kevin.display()},
 ]
 
-""" cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(room), random.choice(weapon))
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(room), random.choice(weapon))
-jon= char("Jonathan Sims", "Jon", random.choice(room), random.choice(weapon))
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(room), random.choice(weapon))
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(room), random.choice(weapon))
-sydney = char("Sydney Sargent", "Sydney", random.choice(room), random.choice(weapon))
-house = char("Doctor House", "House", random.choice(room), random.choice(weapon))
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(room), random.choice(weapon))
-
-characters = {
-    "cecil": cecil.__init__,
-    "fulgrim": fulgrim.__init__, 
-    "jon": jon.__init__,
-    "whalen": whalen.__init__, 
-    "wizard": wizard.__init__, 
-    "sydney": sydney.__init__,
-    "house": house.__init__, 
-    "kevin": kevin.__init__
-} """
-
-""" characters = [cecil, fulgrim, jon, whalen, wizard, sydney, house, kevin]
- """
-murderer = random.choice(characters)
-murderer.display()
-#print(murderer)
+murder = random.choice(characters)
+print(murder["val"])
+cecil.display()
