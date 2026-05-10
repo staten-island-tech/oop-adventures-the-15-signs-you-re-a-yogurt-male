@@ -15,16 +15,16 @@ class char:
 def weaponn():
     w = random.choice(weapon)
     weapon.remove(w)
-    return w
+    return (w)
 
-cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(room), weaponn)
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(room), weaponn)
-jon= char("Jonathan Sims", "Jon", random.choice(room), weaponn)
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(room), weaponn)
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(room), weaponn)
-sydney = char("Sydney Sargent", "Sydney", random.choice(room), weaponn)
-house = char("Dr. Gregory House", "House", random.choice(room), weaponn)
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(room), weaponn)
+cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(room), weaponn())
+fulgrim= char("Fulgrim", "Fulgrim", random.choice(room), weaponn())
+jon= char("Jonathan Sims", "Jon", random.choice(room), weaponn())
+whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(room), weaponn())
+wizard = char("The Wizards is an Animal", "Wizard", random.choice(room), weaponn())
+sydney = char("Sydney Sargent", "Sydney", random.choice(room), weaponn())
+house = char("Dr. Gregory House", "House", random.choice(room), weaponn())
+kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(room), weaponn())
 
 characters = [
     {"name": "cecil",
@@ -47,4 +47,3 @@ characters = [
 
 murder = random.choice(characters)
 print(murder["val"])
-cecil.display()
