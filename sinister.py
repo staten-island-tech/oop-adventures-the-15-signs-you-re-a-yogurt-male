@@ -1,6 +1,6 @@
 import evil
 
-actions = ["See room", "Interact", "Leave Room"]
+actions = ["See room", "Interact", "Leave Room", "Journal"]
 def people(room):
     p_list = []
     for char in evil.chars:
