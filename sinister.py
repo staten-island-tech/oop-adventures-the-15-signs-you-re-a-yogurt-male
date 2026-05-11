@@ -1,6 +1,6 @@
 import evil
-
-actions = ["See room", "Interact", "Leave Room", "Journal"]
+import writing
+actions = ["See room", "Interact", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
     p_list = []
     for char in evil.chars:
@@ -90,4 +90,9 @@ while location == "none":
             print("You have left the room.")
             location = "none"
             a = True
+        elif act == 3:
+            print("You take out your trusty Marble Notebook and Pen.")
+            writing.WRITETHATDOWN()
+        elif act == 4:
+            writing.ReadJournal()
             
