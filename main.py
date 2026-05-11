@@ -21,9 +21,9 @@ def initialize():
     "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
     f"Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead in {Body_Room}.",
  ]
-    player_name = input("Welcome! Before the game begins, please state your name:")
+    player_name = input("Welcome! Before the game begins, please state your name: ")
     for line in intro_writing: 
          print(line)
-    if input("Type X and press the Enter key to continue:"):
+    if input("Type X and press the Enter key to continue: "):
         print("Intro Complete!")
 initialize()
