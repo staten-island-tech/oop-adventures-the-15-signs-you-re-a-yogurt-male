@@ -59,7 +59,10 @@ chars = [
      "room": kevin.display_mroom()},
 ]
 
-murderer = random.choice(chars["name"])
+weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
+
+murderer_choose = random.choice(chars)
+murderer = murderer_choose["name"]
 murder_room = random.choice(rooms)
 murder_weapon = random.choice(weapon)
 #print(murder["val"])
