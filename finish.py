@@ -4,7 +4,18 @@ points = 0
 
 for char in evil.chars:
     print(char["name"])
-guess_char = input("Who is the murderer?  ")
+
+murderer_guessed = False
+while murderer_guessed == False:
+    guess_char = input("Who is the murderer?  ")
+    for char in evil.chars:
+        if guess_char == char["name"]:
+            murderer_guessed = True
+        else:
+            print("Invalid input, please enter again")
+            murderer_guessed = False
+
+##########
 
 for room in evil.rooms:
     print(room)
