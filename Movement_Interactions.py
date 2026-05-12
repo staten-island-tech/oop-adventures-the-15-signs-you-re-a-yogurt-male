@@ -1,6 +1,6 @@
 import evil
-import writing
-actions = ["See room", "Interact", "Leave Room", "Write Clues Down", "Check Notebook"]
+
+actions = ["See room", "Interact", "Leave Room"]
 def people(room):
     p_list = []
     for char in evil.chars:
@@ -19,9 +19,6 @@ class room:
     def show_room(self):
         #insert code for image display
         print("room shown")
-    def printp(self):
-        for indexnumb, person in enumerate(self.people()):
-            print(indexnumb, ":", person)
 
 caf = room("Cafeteria",
            "Most of the usually blinding lights are off, with a few flickering lazily, providing just enough light for you to see. " \
@@ -55,19 +52,19 @@ goyco = room("Goyco Russian",
             people("Goyco Russian"))
 
 rooms = [
-    {"name": "Cafeteria", "codeterm": caf, 
+    {"name": "Cafeteria",
      "disp": caf.display_room()}, 
-    {"name": "Compsci Lab", "codeterm": compsci,
+    {"name": "Compsci Lab",
      "disp": compsci.display_room()}, 
-    {"name": "Auditorium", "codeterm": aud,
+    {"name": "Auditorium",
      "disp": aud.display_room()},
-    {"name": "Secret pool on the roof", "codeterm": pool, 
+    {"name": "Secret pool on the roof",
      "disp": pool.display_room()},
-    {"name": "Engineering Henriques", "codeterm": engineering, 
+    {"name": "Engineering Henriques",
      "disp": engineering.display_room()},
-    {"name": "Gym", "codeterm": gym, 
+    {"name": "Gym",
      "disp": gym.display_room()},
-    {"name": "Goyco Russian", "codeterm": goyco, 
+    {"name": "Goyco Russian",
      "disp": goyco.display_room()}]
 
 location = "none"
@@ -84,20 +81,13 @@ while location == "none":
     while a == False:
         for index, action in enumerate(actions):
             print(f"{index}: {action}")
-        act = int(input("What would you like to do?:"))
+        act = int(input("What would you like to do?  "))
         if act == 0:
             print("tkinter window")
         elif act == 1:
-            locationneeded = itemm["name"]
-            (itemm).printp()
-            speak = (input("Who would you like to speak to?"))
+            speak = input("Who would you like to speak to?  ")
         elif act == 2:
             print("You have left the room.")
             location = "none"
             a = True
-        elif act == 3:
-            print("You take out your trusty Marble Notebook and Pen.")
-            writing.WRITETHATDOWN()
-        elif act == 4:
-            writing.ReadJournal()
-            
+        
