@@ -20,7 +20,7 @@ class room:
         #insert code for image display
         print("room shown")
     def printp(self):
-        for indexnumb, person in enumerate(self.people()):
+        for indexnumb, person in enumerate(self.people):
             print(indexnumb, ":", person)
 
 caf = room("Cafeteria",
@@ -75,22 +75,32 @@ while location == "none":
     for index, item in enumerate(rooms):
         print(f"{index}: {item["name"]}")
     c_location = int(input("What room would you like to enter? Please enter a number:  "))
+    if ValueError or c_location > len(rooms):
+                print("That's not a number, or it doesn't correspond to a valid option! Try again.")
+    else:
+        break
     location = c_location
     for indexx, itemm in enumerate(rooms):
         if c_location == indexx:
             c_location = itemm["name"]
             print(itemm["disp"])
+        roomneeded = itemm["codeterm"]
     a = False
     while a == False:
         for index, action in enumerate(actions):
             print(f"{index}: {action}")
+    
         act = int(input("What would you like to do?:"))
         if act == 0:
             print("tkinter window")
         elif act == 1:
-            locationneeded = itemm["name"]
-            (itemm).printp()
+            print(roomneeded)
+            roomneeded.printp()
             speak = (input("Who would you like to speak to?"))
+            if ValueError:
+                print("That's not a number, or it doesn't correspond to a valid option! Try again.")
+            else: 
+                break 
         elif act == 2:
             print("You have left the room.")
             location = "none"
