@@ -6,8 +6,8 @@ def people(room):
     for char in evil.chars:
         if char["room"] == room:
             p_list.append(char["name"])
+    print(p_list)
     return p_list
-
 class room:
     def __init__(self, name, desc, people):
         self.name = name
@@ -20,8 +20,13 @@ class room:
         #insert code for image display
         print("room shown")
     def printp(self):
-        for indexnumb, person in enumerate(self.people):
-            print(indexnumb, ":", person)
+        if len(self.people) <= 1: 
+            print("There is nobody here to speak to.")
+        else:
+            for indexnumb, person in enumerate(self.people):
+                print(indexnumb, ":", person)
+    def speaktosomeone(self, whichguy):
+        print(self.people[whichguy])
 
 caf = room("Cafeteria",
            "Most of the usually blinding lights are off, with a few flickering lazily, providing just enough light for you to see. " \
@@ -75,17 +80,14 @@ while location == "none":
     for index, item in enumerate(rooms):
         print(f"{index}: {item["name"]}")
     c_location = int(input("What room would you like to enter? Please enter a number:  "))
-    
-    if ValueError or c_location > len(rooms):
-                print("That's not a number, or it doesn't correspond to a valid option! Try again.")
-    else:
-        break
-    location = c_location
-    for indexx, itemm in enumerate(rooms):
-        if c_location == indexx:
-            c_location = itemm["name"]
-            print(itemm["disp"])
-        roomneeded = itemm["codeterm"]
+    # if ValueError or  c_location > 7 or c_location > 7:
+    #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
+    # else:
+    #     break
+    location = rooms[c_location]
+    print(location["disp"])
+    roomneeded = location["codeterm"]
+
     a = False
     while a == False:
         for index, action in enumerate(actions):
@@ -95,9 +97,11 @@ while location == "none":
         if act == 0:
             print("tkinter window")
         elif act == 1:
-            print(roomneeded)
-            roomneeded.printp()
-            speak = (input("Who would you like to speak to?"))
+            print(roomneeded.printp())
+            if (roomneeded.printp()) == None:
+                act = int(input("What would you like to do?:"))
+            speak = int(input("Who would you like to speak to?"))
+            print(roomneeded.speaktosomeone(speak))
         elif act == 2:
             print("You have left the room.")
             location = "none"
@@ -107,4 +111,3 @@ while location == "none":
             writing.WRITETHATDOWN()
         elif act == 4:
             writing.ReadJournal()
-            
