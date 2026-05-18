@@ -75,6 +75,7 @@ while location == "none":
     for index, item in enumerate(rooms):
         print(f"{index}: {item["name"]}")
     c_location = int(input("What room would you like to enter? Please enter a number:  "))
+    
     if ValueError or c_location > len(rooms):
                 print("That's not a number, or it doesn't correspond to a valid option! Try again.")
     else:
@@ -97,10 +98,6 @@ while location == "none":
             print(roomneeded)
             roomneeded.printp()
             speak = (input("Who would you like to speak to?"))
-            if ValueError:
-                print("That's not a number, or it doesn't correspond to a valid option! Try again.")
-            else: 
-                break 
         elif act == 2:
             print("You have left the room.")
             location = "none"
