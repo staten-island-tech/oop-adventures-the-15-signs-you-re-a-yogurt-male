@@ -1,6 +1,7 @@
 import evil
 import writing
-actions = ["See room", "Interact", "Leave Room", "Write Clues Down", "Check Notebook"]
+actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
+actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
     p_list = []
     for char in evil.chars:
@@ -20,13 +21,19 @@ class room:
         #insert code for image display
         print("room shown")
     def printp(self):
-        if len(self.people) <= 1: 
-            print("There is nobody here to speak to.")
+        if len(self.people) <= 0: 
+            (self.people).append("Nobody")
+            print("There is nobody here to speak to. Please select the 'Nobody' option.")
         else:
             for indexnumb, person in enumerate(self.people):
                 print(indexnumb, ":", person)
-    def speaktosomeone(self, whichguy):
-        print(self.people[whichguy])
+            speak = int(input("Who would you like to speak to?"))
+            print(f"Atm, you're speaking to: {self.people[speak]}")
+   
+    def countpeople(self):
+        peoplecount = len(self.people)
+        if peoplecount <= 0:
+            anyppl = False
 
 caf = room("Cafeteria",
            "Most of the usually blinding lights are off, with a few flickering lazily, providing just enough light for you to see. " \
@@ -90,24 +97,21 @@ while location == "none":
 
     a = False
     while a == False:
-        for index, action in enumerate(actions):
+
+        for index, action in enumerate(actionswpeople):
             print(f"{index}: {action}")
     
         act = int(input("What would you like to do?:"))
         if act == 0:
             print("tkinter window")
         elif act == 1:
-            print(roomneeded.printp())
-            if (roomneeded.printp()) == None:
-                act = int(input("What would you like to do?:"))
-            speak = int(input("Who would you like to speak to?"))
-            print(roomneeded.speaktosomeone(speak))
-        elif act == 2:
             print("You have left the room.")
             location = "none"
             a = True
-        elif act == 3:
+        elif act == 2:
             print("You take out your trusty Marble Notebook and Pen.")
             writing.WRITETHATDOWN()
-        elif act == 4:
+        elif act == 3:
             writing.ReadJournal()
+        elif act == 4:
+            roomneeded.printp()
