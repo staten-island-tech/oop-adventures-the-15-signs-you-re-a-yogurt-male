@@ -35,7 +35,8 @@ kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weapon
 chars = [
     {"name": cecil.display_name(),
      "val": cecil.display(),
-     "room": cecil.display_mroom()},
+     "room": cecil.display_mroom()
+     },
     {"name": fulgrim.display_name(), 
      "val" : fulgrim.display(),
      "room": fulgrim.display_mroom()},
