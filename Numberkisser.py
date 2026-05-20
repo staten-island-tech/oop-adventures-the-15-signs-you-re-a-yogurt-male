@@ -1,9 +1,5 @@
 def CHECKFORINTEGER(ourinput):
-    while True:
-        try: 
-            num = int(ourinput)
-            break
+    try: 
+            number = int(ourinput)
     except ValueError:
-        print("Invalid input!")
-
-print(num)
+        print("Invalid input! Reread the above instructions.")

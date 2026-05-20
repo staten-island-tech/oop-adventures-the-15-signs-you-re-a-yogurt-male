@@ -1,5 +1,5 @@
 import evil
-import writing
+import writing # imports writing system
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
 actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -7,7 +7,7 @@ def people(room):
     for char in evil.chars:
         if char["room"] == room:
             p_list.append(char["name"])
-    print(p_list)
+    # print(p_list)
     return p_list
 class room:
     def __init__(self, name, desc, people):
@@ -28,7 +28,7 @@ class room:
             for indexnumb, person in enumerate(self.people):
                 print(indexnumb, ":", person)
             speak = int(input("Who would you like to speak to?"))
-            print(f"Atm, you're speaking to: {self.people[speak]}")
+            print(f"Atm, you're speaking to: {self.people[speak]}. WHEN DIALOG FUNCTION DONE, CHANGE THIS LINE! ")
    
     def countpeople(self):
         peoplecount = len(self.people)
@@ -80,38 +80,91 @@ rooms = [
     {"name": "Gym", "codeterm": gym, 
      "disp": gym.display_room()},
     {"name": "Goyco Russian", "codeterm": goyco, 
-     "disp": goyco.display_room()}]
+     "disp": goyco.display_room()}, 
+    {"name": "The Supply Closet", "codeterm": "N/A", "disp": "" }]
 
-location = "none"
-while location == "none":
-    for index, item in enumerate(rooms):
-        print(f"{index}: {item["name"]}")
-    c_location = int(input("What room would you like to enter? Please enter a number:  "))
-    # if ValueError or  c_location > 7 or c_location > 7:
-    #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
-    # else:
-    #     break
-    location = rooms[c_location]
-    print(location["disp"])
-    roomneeded = location["codeterm"]
+# inital interaction value thign  
+interactedtoday = 0 
+CanSleep = False
+daysleft = 3
+TotalEnergy = 5 
+CanAct = True 
 
-    a = False
-    while a == False:
 
-        for index, action in enumerate(actionswpeople):
-            print(f"{index}: {action}")
+def checkinteraction():
+    CanSleep = False
+    if interactedtoday > 0:
+         CanSleep = True
+    return (CanSleep)
+def checkenergy():
+    if TotalEnergy <= 0:
+        CanAct = False
+    else:
+        CanAct = True 
+    return CanAct
+
+def enterroom():
+    location = "none"
+    while location == "none":
+        for index, item in enumerate(rooms):
+            print(f"{index}: {item["name"]}")
+        c_location = int(input("What room would you like to enter? Please enter a number:  "))
+        # if ValueError or  c_location > 7 or c_location > 7:
+        #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
+        # else:
+        #     break
+        if c_location == 7: 
+            sleepq = checkinteraction()
+            if sleepq ==  False: 
+                print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
+            else:
+                print("After deciding you're done with your investigation, you retire for the day.")
+            daysleft =- 1
+            print(f" You have {daysleft} days left to find Julius's killer.")
+        location = rooms[c_location]
+        print(location["disp"])
+        roomneeded = location["codeterm"]
+        return roomneeded
     
-        act = int(input("What would you like to do?:"))
-        if act == 0:
-            print("tkinter window")
-        elif act == 1:
-            print("You have left the room.")
-            location = "none"
-            a = True
-        elif act == 2:
-            print("You take out your trusty Marble Notebook and Pen.")
-            writing.WRITETHATDOWN()
-        elif act == 3:
-            writing.ReadJournal()
-        elif act == 4:
-            roomneeded.printp()
+def makeanaction():
+        roominside = enterroom()
+        a = False
+        while a == False:
+
+            for index, action in enumerate(actionswpeople):
+                print(f"{index}: {action}")
+        
+            act = int(input("What would you like to do?:"))
+            if act == 0:
+                ability = checkenergy()
+                if ability == False:
+                    print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
+                else:
+                    TotalEnergy -= 1
+                    interactedtoday += 1
+                    print("tkinter window")
+            elif act == 1:
+                print("You have left the room.")
+                location = "none"
+                a = True
+            elif act == 2:
+                print("You take out your trusty Marble Notebook and Pen.")
+                writing.WRITETHATDOWN()
+            elif act == 3:
+                writing.ReadJournal()
+            elif act == 4:
+                ability = checkenergy()
+                if ability == False:
+                    print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
+                else:
+                 TotalEnergy -= 1
+                 interactedtoday += 1
+                 roominside.printp()
+
+
+# FRAMEWORK ABOVE ^^^ Below.. Succint version of what is being done. 
+def startdaycycle(): 
+    makeanaction()
+
+#calling! !
+startdaycycle()
