@@ -34,8 +34,8 @@ accusation_1 = [">:(",
 
 dialogues = [
     {"name": "Jonathan Sims",
-     "intro": "15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins…\n"
-         "It is not often that I find myself facing the murder of a classmate within a school building…",
+     "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
+         "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
      "initial_1" : "I am fine, but it does not seem that everyone else appears to be as well.",
      "initial_2" : "You certainly have some nerve to interrupt an archival recording. Make it quick-\n"
          "I do believe I may have seen {person} carrying {weapon} around… there was a strange sound coming "
@@ -44,11 +44,15 @@ dialogues = [
      "initial_4" : "Are you sure you want to search this character? You will gain no useful information from this action.",
      "unfortunate_1": "I was walking past {room} earlier and did see {person} with {weapon}, but I am unsure.",
      }
-]
+]             
 
 
 def interact(character):
-    print("introduction")
-    for index, option in initial:
+    print(dialogues[0]["intro"])
+    for index, option in enumerate(initial):
         print(index,":", option)
     select = int(input("Select a dialogue option:  "))
+        if 
+
+
+interact("Jonathan Sims")
