@@ -1,5 +1,6 @@
 import evil
 import writing # imports writing system
+import CLASSplayer_and_numberfunc # what it says on the tin 
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
 actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -9,6 +10,36 @@ def people(room):
             p_list.append(char["name"])
     # print(p_list)
     return p_list
+
+class detective:
+    def __init__(player_name,self, interactedtoday,CanSleep,daysleft,TotalEnergy,CanAct):
+         self.player_name = player_name
+         self.interactedtoday = interactedtoday
+         self.CanSleep = CanSleep
+         self.daysleft = daysleft
+         self.TotalEnergy = TotalEnergy 
+         self.CanAct = CanAct
+
+    def checkinteraction(self):
+        self.CanSleep = False
+        if self.interactedtoday > 0:
+            self.CanSleep = True
+            
+    def checkenergy(self):
+        if self.TotalEnergy <= 0:
+            self.CanAct = False
+        else:
+            self.CanAct = True
+
+    def raiseinteractioncount(self):
+        self.TotalEnergy -= 1
+        self.interactedtoday += 1
+    def bedtime(self):
+        print(f" You have {self.daysleft} days left to find Julius's killer.")
+
+
+play = detective((input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
+
 class room:
     def __init__(self, name, desc, people):
         self.name = name
@@ -34,7 +65,6 @@ class room:
         peoplecount = len(self.people)
         if peoplecount <= 0:
             anyppl = False
-
 caf = room("Cafeteria",
            "Most of the usually blinding lights are off, with a few flickering lazily, providing just enough light for you to see. " \
            "Through the basement windows you can see water leaking through, though not enough to flood the cafeteria yet. ",
@@ -83,25 +113,7 @@ rooms = [
      "disp": goyco.display_room()}, 
     {"name": "The Supply Closet", "codeterm": "N/A", "disp": "" }]
 
-# inital interaction value thign  
-interactedtoday = 0 
-CanSleep = False
-daysleft = 3
-TotalEnergy = 5 
-CanAct = True 
-
-
-def checkinteraction():
-    CanSleep = False
-    if interactedtoday > 0:
-         CanSleep = True
-    return (CanSleep)
-def checkenergy():
-    if TotalEnergy <= 0:
-        CanAct = False
-    else:
-        CanAct = True 
-    return CanAct
+# inital interaction value thign  - use a class for detective's variables 
 
 def enterroom():
     location = "none"
@@ -114,13 +126,12 @@ def enterroom():
         # else:
         #     break
         if c_location == 7: 
-            sleepq = checkinteraction()
+            sleepq = play.checkinteraction()
             if sleepq ==  False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
             else:
                 print("After deciding you're done with your investigation, you retire for the day.")
-            daysleft =- 1
-            print(f" You have {daysleft} days left to find Julius's killer.")
+                play.bedtime()
         location = rooms[c_location]
         print(location["disp"])
         roomneeded = location["codeterm"]
