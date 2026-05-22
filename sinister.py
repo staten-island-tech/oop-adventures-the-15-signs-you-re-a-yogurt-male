@@ -1,6 +1,8 @@
 import evil
 import writing # imports writing system
 import CLASSplayer_and_numberfunc # what it says on the tin 
+from main import play
+
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
 actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -11,34 +13,7 @@ def people(room):
     # print(p_list)
     return p_list
 
-class detective:
-    def __init__(player_name,self, interactedtoday,CanSleep,daysleft,TotalEnergy,CanAct):
-         self.player_name = player_name
-         self.interactedtoday = interactedtoday
-         self.CanSleep = CanSleep
-         self.daysleft = daysleft
-         self.TotalEnergy = TotalEnergy 
-         self.CanAct = CanAct
 
-    def checkinteraction(self):
-        self.CanSleep = False
-        if self.interactedtoday > 0:
-            self.CanSleep = True
-            
-    def checkenergy(self):
-        if self.TotalEnergy <= 0:
-            self.CanAct = False
-        else:
-            self.CanAct = True
-
-    def raiseinteractioncount(self):
-        self.TotalEnergy -= 1
-        self.interactedtoday += 1
-    def bedtime(self):
-        print(f" You have {self.daysleft} days left to find Julius's killer.")
-
-
-play = detective((input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
 
 class room:
     def __init__(self, name, desc, people):
@@ -54,12 +29,12 @@ class room:
     def printp(self):
         if len(self.people) <= 0: 
             (self.people).append("Nobody")
-            print("There is nobody here to speak to. Please select the 'Nobody' option.")
+            print("There is nobody here to speak to.")
         else:
             for indexnumb, person in enumerate(self.people):
                 print(indexnumb, ":", person)
             speak = int(input("Who would you like to speak to?"))
-            print(f"Atm, you're speaking to: {self.people[speak]}. WHEN DIALOG FUNCTION DONE, CHANGE THIS LINE! ")
+            print(f"Atm, you {play.pname} speaking to: {self.people[speak]}. WHEN DIALOG FUNCTION DONE, CHANGE THIS LINE! ")
    
     def countpeople(self):
         peoplecount = len(self.people)
@@ -125,13 +100,18 @@ def enterroom():
         #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
         # else:
         #     break
-        if c_location == 7: 
-            sleepq = play.checkinteraction()
-            if sleepq ==  False: 
+        if c_location == 7:
+            play.checkinteraction
+            print(play.CanSleep)
+            if play.CanSleep ==  False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
+                enterroom()
+                makeanaction()
             else:
-                print("After deciding you're done with your investigation, you retire for the day.")
-                play.bedtime()
+                    print("After deciding you're done with your investigation, you retire for the day.")
+                    play.bedtime()
+                    enterroom()
+                    makeanaction()
         location = rooms[c_location]
         print(location["disp"])
         roomneeded = location["codeterm"]
@@ -143,33 +123,31 @@ def makeanaction():
         while a == False:
 
             for index, action in enumerate(actionswpeople):
+                print (play.interactedtoday,play.TotalEnergy)
                 print(f"{index}: {action}")
         
             act = int(input("What would you like to do?:"))
             if act == 0:
-                ability = checkenergy()
-                if ability == False:
+                if play.CanAct == False:
                     print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
                 else:
-                    TotalEnergy -= 1
-                    interactedtoday += 1
+                    play.raiseinteractioncount()
                     print("tkinter window")
             elif act == 1:
                 print("You have left the room.")
                 location = "none"
                 a = True
+                enterroom()
             elif act == 2:
                 print("You take out your trusty Marble Notebook and Pen.")
                 writing.WRITETHATDOWN()
             elif act == 3:
                 writing.ReadJournal()
             elif act == 4:
-                ability = checkenergy()
-                if ability == False:
+                if play.CanAct == False:
                     print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
                 else:
-                 TotalEnergy -= 1
-                 interactedtoday += 1
+                 play.raiseinteractioncount()
                  roominside.printp()
 
 

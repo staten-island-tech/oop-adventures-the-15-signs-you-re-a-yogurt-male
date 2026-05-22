@@ -4,8 +4,8 @@ import random
 Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
 
-
 def initialize():
+    
     Body_Room = random.choice(Murderedrooms_list)
     Murderer = random.choice(character_list)
 
@@ -21,9 +21,42 @@ def initialize():
     "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
     f"Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead in {Body_Room}.",
  ]
-    player_name = input("Welcome! Before the game begins, please state your name: ")
     for line in intro_writing: 
          print(line)
-    if input("Type X and press the Enter key to continue: "):
+    if input("Press anything and then the Enter Key to continue: "):
         print("Intro Complete!")
+        
+
+class detective:
+    def __init__(self, pname, interactedtoday,CanSleep,daysleft,TotalEnergy,CanAct):
+         self.pname = pname
+         self.interactedtoday = interactedtoday
+         self.CanSleep = CanSleep
+         self.daysleft = daysleft
+         self.TotalEnergy = TotalEnergy 
+         self.CanAct = CanAct
+
+    def checkinteraction(self):
+        self.CanSleep = False
+        if self.interactedtoday > 0:
+            self.CanSleep = True
+            
+    def checkenergy(self):
+        if self.TotalEnergy <= 0:
+            self.CanAct = False
+        else:
+            self.CanAct = True
+
+    def raiseinteractioncount(self):
+        self.TotalEnergy -= 1
+        self.interactedtoday += 1
+        self.daysleft -= 1
+    def bedtime(self):
+         print(f" You have {self.daysleft} days left to find Julius's killer.")
+         self.interactedtoday = 0
+         self.TotalEnergy = 5
+
+
+play = detective(str(input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
+
 initialize()
