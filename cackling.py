@@ -50,7 +50,7 @@ c_dialogues = [
          "from {room} as well, but I cannot be sure.",
      "initial_3" : "Excuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?",
      "initial_4" : "Are you sure you want to search this character? You will gain no useful information from this action.",
-     "unfortunate_1": "Indeed.",
+     "unfortunate_1": "\nIndeed.",
      "no": "Well I’m not sure what to say then, are you satisfied throwing around mindless accusations? Please leave. I do not wish to continue this conversation.",
      ">:[": "[scowls at you, evidently annoyed]",
      "thanks" : "[watches you leave]",
@@ -73,6 +73,7 @@ def initial_1(char):
     if select == 0:                                         #It sure is unfortunate that Julius has died...
         response(char, "unfortunate_1")
         d_setup(5)
+
     if select == 1:                                         #Hey so. Did you kill Julius
         response(char, "initial_3")
         d_setup(3)
@@ -109,30 +110,47 @@ def initial_3(char):
 #search char
 def initial_4(char):
     select = int(input("Select a dialogue option:  "))
-    if select == 0:
+    if select == 0:                                         #yes
         response(char, "search")
-    if select == 1:
+    if select == 1:                                         #no
         response(char, "thanks")
+
+def unfortunate(char):
+    select = int(input("Select a dialogue option:  "))
+    if select == 0:                                         #Have you seen anything unusual lately perhaps?
+        response(char, "initial_2")
+        d_setup(2)
+        initial_2(char)
+    if select == 1:                                         #Hey so. Did you kill Julius
+        response(char, "initial_3")
+        d_setup(3)
+        initial_3(char)
+    if select == 2:                                         #Goodbye
+        response(char, "goodbye")
+    if select == 3:                                         #[search character]
+        response (char, "search")
+        d_setup(4)
+        initial_4(char)
 
 #intro
 def qround_1(char):
     select = int(input("Select a dialogue option:  "))
-    if select == 0:
+    if select == 0:                                         # How have you been holding up?
         response(char, "initial_1")
         d_setup(1)
         initial_1(char)
-    elif select == 1:
+    elif select == 1:                                       #Hey! Have you seen anything lately?
         response(char, "initial_2")
         d_setup(2)
         initial_2(char)
-    elif select == 2:
+    elif select == 2:                                       #Are you the one who killed Julius??
         response(char, "initial_3")
         d_setup(3)
         initial_3(char)
-    elif select == 3:
+    elif select == 3:                                       #[search character]
         response(char, "initial_4")
         d_setup(4)
-
+        initial_4(char)
     else:
         print("Dialogue option does not exist. Please choose again")
 
