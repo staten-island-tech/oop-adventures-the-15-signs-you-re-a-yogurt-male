@@ -1,17 +1,29 @@
-# hallway goal: select list of names.. ect
+# welcome 
+import random
+# first murderer EVER generated: mr. whalen 
+Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
+character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
 
-def movethru():
-    required_talk = 1 
-    required_walk = 2
-    comptalk = 0
-    compwalk = 0 
-    print("IF you were at home, you'd probably procrastinate getting up-- it is summer break, after all.")
-    print("You're, instead, locked in a building with a dead body and 8 potential murderers, so.. It's not exactly easy to rest.")
-    print("You walk out into the hallway. Nobody is here, and the windows are still blurred with rain.")
-    rooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium", "Back to the broom closet, to sleep."]
-    for index, x in enumerate(rooms_list):
-            print(index, ":", x)
-    chosen_room = int(input("Where would you like to go next? Enter the number corresponding:"))
-    print(rooms_list[chosen_room])
-    if comptalk or 
-movethru()
+
+def initialize():
+    Body_Room = random.choice(Murderedrooms_list)
+    Murderer = random.choice(character_list)
+
+    intro_writing = ["You awake from your shallow rest with a start. ",
+    "It took a few moments for you to realize where you were: you're not used to sleeping in a supply closet.",
+    "To be fair, you weren’t meant to be in a supply closet at all. You barricaded yourself in here so you could rest safely.",
+     "March 13th marked start date of the Discovery program-- Staten Island Tech’s Discovery program-- ",
+     "and that day, you and 9 of your peers were to study in order to claim one of their additional seats.",
+     "~~~~",
+    "All was well until the second day of the program, and a tumultuous summer storm arrived.",
+    "Initially, only two of your teachers had called out, but now all of them were gone.",
+    "You were supposed to have been left with a sub, but they hightailed it as soon as the streets began to flood.", 
+    "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
+    f"Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead in {Body_Room}.",
+ ]
+    player_name = input("Welcome! Before the game begins, please state your name: ")
+    for line in intro_writing: 
+         print(line)
+    if input("Type X and press the Enter key to continue: "):
+        print("Intro Complete!")
+initialize()
