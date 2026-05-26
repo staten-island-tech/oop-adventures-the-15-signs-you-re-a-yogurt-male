@@ -26,7 +26,6 @@ def initialize():
     if input("Press anything and then the Enter Key to continue: "):
         print("Intro Complete!")
         
-
 class detective:
     def __init__(self, pname, interactedtoday,CanSleep,daysleft,TotalEnergy,CanAct):
          self.pname = pname
@@ -40,6 +39,8 @@ class detective:
         self.CanSleep = False
         if self.interactedtoday > 0:
             self.CanSleep = True
+        else:
+            self.CanSleep = False
             
     def checkenergy(self):
         if self.TotalEnergy <= 0:
@@ -50,7 +51,6 @@ class detective:
     def raiseinteractioncount(self):
         self.TotalEnergy -= 1
         self.interactedtoday += 1
-        self.daysleft -= 1
     def bedtime(self):
          print(f" You have {self.daysleft} days left to find Julius's killer.")
          self.interactedtoday = 0
@@ -58,5 +58,3 @@ class detective:
 
 
 play = detective(str(input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
-
-initialize()

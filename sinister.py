@@ -2,6 +2,7 @@ import evil
 import writing # imports writing system
 import CLASSplayer_and_numberfunc # what it says on the tin 
 from main import play
+from main import initialize
 
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
 actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
@@ -26,7 +27,8 @@ class room:
     def show_room(self):
         #insert code for image display
         print("room shown")
-    def printp(self):
+
+    def printpeople(self):
         if len(self.people) <= 0: 
             (self.people).append("Nobody")
             print("There is nobody here to speak to.")
@@ -92,7 +94,9 @@ rooms = [
 
 def enterroom():
     location = "none"
+    sleeping = False
     while location == "none":
+        print(play.interactedtoday,play.TotalEnergy,play.CanSleep) #diagnostic
         for index, item in enumerate(rooms):
             print(f"{index}: {item["name"]}")
         c_location = int(input("What room would you like to enter? Please enter a number:  "))
@@ -102,16 +106,15 @@ def enterroom():
         #     break
         if c_location == 7:
             play.checkinteraction()
-            if play.interactedtoday > 0: 
+            if play.CanSleep == False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
                 enterroom()
-                makeanaction()
             else:
                     print("After deciding you're done with your investigation, you retire for the day.")
-                    play.raiseinteractioncount()
+                    print("~")
+                    print("You awake the next morning, still unfortunately trapped.")
                     play.bedtime()
                     enterroom()
-                    makeanaction()
         location = rooms[c_location]
         print(location["disp"])
         roomneeded = location["codeterm"]
@@ -120,9 +123,7 @@ def enterroom():
 def makeanaction():
         roominside = enterroom()
         a = False
-        print (play.interactedtoday,play.TotalEnergy,play.CanSleep)
         while a == False:
-            print (play.interactedtoday,play.TotalEnergy,play.CanSleep) #diagnostic
             for index, action in enumerate(actionswpeople):
                 print(f"{index}: {action}")
         
@@ -150,12 +151,13 @@ def makeanaction():
                     print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
                 else:
                  play.raiseinteractioncount()
-                 roominside.printp()
+                 roominside.printpeople()
 
 
 # FRAMEWORK ABOVE ^^^ Below.. Succint version of what is being done. 
-def startdaycycle(): 
+def startdaycycle():
     makeanaction()
 
 #calling! !
+initialize()
 startdaycycle()
