@@ -101,14 +101,14 @@ def enterroom():
         # else:
         #     break
         if c_location == 7:
-            play.checkinteraction
-            print(play.CanSleep)
-            if play.CanSleep ==  False: 
+            play.checkinteraction()
+            if play.interactedtoday > 0: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
                 enterroom()
                 makeanaction()
             else:
                     print("After deciding you're done with your investigation, you retire for the day.")
+                    play.raiseinteractioncount()
                     play.bedtime()
                     enterroom()
                     makeanaction()
@@ -120,14 +120,15 @@ def enterroom():
 def makeanaction():
         roominside = enterroom()
         a = False
+        print (play.interactedtoday,play.TotalEnergy,play.CanSleep)
         while a == False:
-
+            print (play.interactedtoday,play.TotalEnergy,play.CanSleep) #diagnostic
             for index, action in enumerate(actionswpeople):
-                print (play.interactedtoday,play.TotalEnergy)
                 print(f"{index}: {action}")
         
             act = int(input("What would you like to do?:"))
             if act == 0:
+                play.checkenergy()
                 if play.CanAct == False:
                     print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
                 else:
@@ -144,6 +145,7 @@ def makeanaction():
             elif act == 3:
                 writing.ReadJournal()
             elif act == 4:
+                play.checkenergy()
                 if play.CanAct == False:
                     print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
                 else:
