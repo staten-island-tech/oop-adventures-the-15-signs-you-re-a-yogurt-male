@@ -91,12 +91,15 @@ rooms = [
     {"name": "The Supply Closet", "codeterm": "N/A", "disp": "" }]
 
 # inital interaction value thign  - use a class for detective's variables 
-
+global roomneeded
+roomneeded = None
 def enterroom():
     location = "none"
     sleeping = False
     while location == "none":
-        print(play.interactedtoday,play.TotalEnergy,play.CanSleep) #diagnostic
+        play.checkenergy()
+        print(play.interactedtoday,play.TotalEnergy,play.CanSleep) #REMOVE AT END 
+
         for index, item in enumerate(rooms):
             print(f"{index}: {item["name"]}")
         c_location = int(input("What room would you like to enter? Please enter a number:  "))
@@ -117,8 +120,9 @@ def enterroom():
                     enterroom()
         location = rooms[c_location]
         print(location["disp"])
-        roomneeded = location["codeterm"]
-        return roomneeded
+        global roomneeded 
+        roomneeded == location["codeterm"]
+
     
 def makeanaction():
         roominside = enterroom()
@@ -126,7 +130,6 @@ def makeanaction():
         while a == False:
             for index, action in enumerate(actionswpeople):
                 print(f"{index}: {action}")
-        
             act = int(input("What would you like to do?:"))
             if act == 0:
                 play.checkenergy()
@@ -137,8 +140,6 @@ def makeanaction():
                     print("tkinter window")
             elif act == 1:
                 print("You have left the room.")
-                location = "none"
-                a = True
                 enterroom()
             elif act == 2:
                 print("You take out your trusty Marble Notebook and Pen.")

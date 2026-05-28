@@ -51,10 +51,13 @@ class detective:
     def raiseinteractioncount(self):
         self.TotalEnergy -= 1
         self.interactedtoday += 1
+
     def bedtime(self):
-         print(f" You have {self.daysleft} days left to find Julius's killer.")
+         self.daysleft -= 1
+         print(f"You have {self.daysleft} days left to find Julius's killer.")
          self.interactedtoday = 0
          self.TotalEnergy = 5
+         self.CanSleep = False
 
 
 play = detective(str(input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
