@@ -92,7 +92,8 @@ rooms = [
 
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
-roomneeded = None
+roomneeded = "what"
+
 def enterroom():
     location = "none"
     sleeping = False
@@ -120,6 +121,7 @@ def enterroom():
                     enterroom()
         location = rooms[c_location]
         print(location["disp"])
+
         global roomneeded 
         roomneeded == location["codeterm"]
 
