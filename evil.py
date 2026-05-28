@@ -1,8 +1,8 @@
 import random
 
 rooms = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "Engineering Henriques", "Gym", "Goyco Russian"]
-weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
-items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter"]
+weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
+items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
 class char:
     def __init__(self, full_name, first_name, room, weapon):
         self.full_name = full_name
@@ -21,8 +21,8 @@ class char:
         return self.weapon
     
 def weaponn():
-    w = random.choice(weapon)
-    weapon.remove(w)
+    w = random.choice(weaponl)
+    weaponl.remove(w)
     return (w)
 
 cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn())
@@ -40,7 +40,7 @@ chars = [
      "room": cecil.display_mroom(),
      "intro": "\nHello there! I see you've heard about the death of our friend, Caesar sure was a good one.\n-----",
      "initial_1" : "\nOh you know, it's standard for a few interns- ahem. Students- not to make it through the testing process :)\n-----",
-     "initial_2" : "\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{person} was walking around {room} with {weapon} a while ago, but I wouldn't think much of it.\n-----",
+     "initial_2" : f"\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{random.choice(person)} was walking around {room} with {weapon} a while ago, but I wouldn't think much of it.\n-----",
      "initial_3" : "\nHah- killed? Julius? What next, you'll be accusing me of purchasing wheat and wheat byproducts? What kind of blasphemy do you think I am?\n----- ",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "\nLike I said, this happens often. I wouldn't be worried.\n-----",
@@ -116,7 +116,7 @@ chars = [
      "thanks" : "You feel the wizard's gaze on your back as you leave.",
      "goodbye" : "The wizard's glare, though not initially with ill intent, is now accompanies by an acute irritiation that pierces right through you.\n-----",
      "search": "\nYou lift up the wizard's hat, and immediately regret this decision, as you remember in one of your history classes that touching a wizard's hat is the sign of utmost disrespect. "
-         "The wizard undoubtedly despises you now, and under their hat you can see {random.item}, {self.weapon}, and a mysterious orb. "
+         f"The wizard undoubtedly despises you now, and under their hat you can see {random.choice(items)}, {wizard.display_mweapon()}, and a mysterious orb. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":sydney.display_name(),
      "val" : sydney.display(),
@@ -132,7 +132,7 @@ chars = [
      "thanks" : "\nOf course! I do hope you find who killed Julius, I sure will miss her...\n-----",
      "goodbye" : "\nAnd you're just leaving. Alright. I see. Bye?\n-----",
      "search": "You demand Sydney to empty his pockets, to which he gets very defensive and annoyed. Eventually however, he does. "
-         "From his pockets he takes out a jar of worms, {self.weapon}, and {random_item}. "
+         f"From his pockets he takes out a jar of worms, {sydney.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":house.display_name(),
      "val" : house.display(),
@@ -168,10 +168,24 @@ chars = [
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
 ]
 
+
 weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 
+count=0
 murderer_choose = random.choice(chars)
+while count < 10:
+    count+=1
+    chars.append(murderer_choose)
+count=0
 murderer = murderer_choose["name"]
 murder_room = random.choice(rooms)
+while count < 10:
+    count+=1
+    rooms.append(murder_room)
+count=0
 murder_weapon = random.choice(weapon)
+weapon.append(murder_weapon)
+while count < 10:
+    count+=1
+    weapon.append(murder_weapon)
 #print(murder["val"])
