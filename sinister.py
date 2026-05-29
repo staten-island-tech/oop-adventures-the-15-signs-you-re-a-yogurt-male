@@ -124,6 +124,7 @@ def enterroom():
 
         global roomneeded 
         roomneeded == location["codeterm"]
+        print(str(roomneeded))
 
     
 def makeanaction():
