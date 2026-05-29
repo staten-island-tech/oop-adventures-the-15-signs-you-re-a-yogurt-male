@@ -45,7 +45,7 @@ def d_setup(num):
     for index, option in enumerate(dialogues[num]["qs"]):
         print(index,":", option)
 def response(char, resp):
-    print(evil.chars[char][resp])
+    print(evil.char_dialogues[char][resp])
 
 #How have you been holding up?
 def initial_1(char):
@@ -54,6 +54,7 @@ def initial_1(char):
         response(char, "unfortunate_1")
         d_setup(5)
         unfortunate(char)
+        char.display_name()
     elif select == 1:                                         #Hey so. Did you kill Julius
         response(char, "initial_3")
         d_setup(3)
