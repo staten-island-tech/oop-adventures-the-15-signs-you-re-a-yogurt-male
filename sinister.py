@@ -92,7 +92,9 @@ rooms = [
 
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
-roomneeded = "what"
+global roomwithin
+roomwithin = "nowhere"
+roomneeded = "placeholder, not yet updated"
 
 def enterroom():
     location = "none"
@@ -121,14 +123,15 @@ def enterroom():
                     enterroom()
         location = rooms[c_location]
         print(location["disp"])
-
         global roomneeded 
-        roomneeded == location["codeterm"]
-        print(str(roomneeded))
+        global roomwithin
+        roomneeded = location["codeterm"]
+        roomwithin = location["name"]
 
     
 def makeanaction():
-        roominside = enterroom()
+        global roomneeded
+        global roomwithin 
         a = False
         while a == False:
             for index, action in enumerate(actionswpeople):
@@ -155,13 +158,15 @@ def makeanaction():
                     print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
                 else:
                  play.raiseinteractioncount()
-                 roominside.printpeople()
+                 print(roomneeded,roomwithin)
+                 roomneeded.printpeople()
 
 
 # FRAMEWORK ABOVE ^^^ Below.. Succint version of what is being done. 
 def startdaycycle():
+    enterroom()
     makeanaction()
 
 #calling! !
-initialize()
-startdaycycle()
+# initialize()
+# startdaycycle()
