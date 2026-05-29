@@ -1,6 +1,6 @@
 import evil
 import writing # imports writing system
-import CLASSplayer_and_numberfunc # what it says on the tin 
+from numberkisser import CHECKFORINTEGER # what it says on the tin 
 from main import play
 from main import initialize
 
@@ -72,6 +72,7 @@ goyco = room("Goyco Russian",
             "As you listen to it rattle on, you see the desks disturbed and several overturned chairs. " \
             "The last person to have been in this room must have really made an effort to show their dislike of it. ",
             people("Goyco Russian"))
+supplycloset = room("Supply Closet", "HONK SHOOOO MIMIMI.", [])
 
 rooms = [
     {"name": "Cafeteria", "codeterm": caf, 
@@ -88,7 +89,9 @@ rooms = [
      "disp": gym.display_room()},
     {"name": "Goyco Russian", "codeterm": goyco, 
      "disp": goyco.display_room()}, 
-    {"name": "The Supply Closet", "codeterm": "N/A", "disp": "" }]
+    # {"name": "The Supply Closet", "codeterm": supplycloset, "disp": "" }
+    
+    ]
 
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
@@ -101,11 +104,10 @@ def enterroom():
     sleeping = False
     while location == "none":
         play.checkenergy()
-        print(play.interactedtoday,play.TotalEnergy,play.CanSleep) #REMOVE AT END 
-
         for index, item in enumerate(rooms):
             print(f"{index}: {item["name"]}")
-        c_location = int(input("What room would you like to enter? Please enter a number:  "))
+        c_location = (input("What room would you like to enter? Please enter a number:  "))
+        c_location = int(c_location)
         # if ValueError or  c_location > 7 or c_location > 7:
         #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
         # else:
@@ -168,5 +170,5 @@ def startdaycycle():
     makeanaction()
 
 #calling! !
-# initialize()
-# startdaycycle()
+initialize()
+startdaycycle()

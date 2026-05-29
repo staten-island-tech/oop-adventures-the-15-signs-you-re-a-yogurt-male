@@ -19,7 +19,8 @@ def initialize():
     "Initially, only two of your teachers had called out, but now all of them were gone.",
     "You were supposed to have been left with a sub, but they hightailed it as soon as the streets began to flood.", 
     "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
-    f"Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead in {Body_Room}.",
+    "Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead by your peers.",
+    "It's up to you, now, to put the story of her murder together."
  ]
     for line in intro_writing: 
          print(line)
