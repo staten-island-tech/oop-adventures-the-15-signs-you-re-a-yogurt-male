@@ -182,7 +182,9 @@ def qround_1(char):
         qround_1(char)
 
 def interact(character):
+    print(evil.chars[character]["anger"])
     qround_1(character)
+
 
 ask = int(input("Who would you like to interact with?  "))
 interact(ask) 

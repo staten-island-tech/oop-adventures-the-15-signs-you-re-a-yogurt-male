@@ -5,12 +5,12 @@ weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Br
 items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
 char_list = ["Cecil", "Fulgrim", "Jon", "Whalen", "Wizards", "Sydney", "House", "Kevin"]
 class char:
-    def __init__(self, full_name, first_name, room, weapon):
+    def __init__(self, full_name, first_name, room, weapon, anger):
         self.full_name = full_name
         self.first_name = first_name
         self.room = room
         self.weapon = weapon
-
+        self.anger = anger
     def display(self):
         info = (f"Murderer: {self.full_name}\nRoom: {self.room}\nWeapon: {self.weapon}")
         return info
@@ -20,46 +20,83 @@ class char:
         return self.room
     def display_mweapon(self):
         return self.weapon
+    def irritate(self, val):
+        self.anger += val
+    def display_anger(self):
+        return self.anger
+        
     
 def weaponn():
     w = random.choice(weaponl)
     weaponl.remove(w)
     return (w)
 
-cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn())
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn())
-jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn())
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn())
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn())
-sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn())
-house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn())
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn())
+cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
+fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
+jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
+whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
+wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
+sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
+house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
+kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
 
 chars = [
     {"name": cecil.display_name(),
      "val": cecil.display(),
-     "room": cecil.display_mroom(),},
+     "room": cecil.display_mroom(),
+     "s_irritate": cecil.irritate(5),
+     "m_irritate": cecil.irritate(10),
+     "l_irritate": cecil.irritate(15),
+     "anger": cecil.display_anger()},
     {"name": fulgrim.display_name(), 
      "val" : fulgrim.display(),
-     "room": fulgrim.display_mroom(),},
+     "room": fulgrim.display_mroom(),
+     "s_irritate": fulgrim.irritate(5),
+     "m_irritate": fulgrim.irritate(10),
+     "l_irritate": fulgrim.irritate(15),
+     "anger": fulgrim.display_anger()},
     {"name": jon.display_name(),
      "val" : jon.display(),
-     "room": jon.display_mroom(),},
+     "room": jon.display_mroom(),
+     "s_irritate": jon.irritate(5),
+     "m_irritate": jon.irritate(10),
+     "l_irritate": jon.irritate(15),
+     "anger": jon.display_anger()},
     {"name":whalen.display_name(),
      "val" : whalen.display(),
-     "room": whalen.display_mroom(),},
+     "room": whalen.display_mroom(),
+     "s_irritate": whalen.irritate(5),
+     "m_irritate": whalen.irritate(10),
+     "l_irritate": whalen.irritate(15),
+     "anger": whalen.display_anger()},
     {"name":wizard.display_name(),
      "val" : wizard.display(),
-     "room": wizard.display_mroom(),},
+     "room": wizard.display_mroom(),
+     "s_irritate": wizard.irritate(5),
+     "m_irritate": wizard.irritate(10),
+     "l_irritate": wizard.irritate(15),
+     "anger": wizard.display_anger()},
     {"name":sydney.display_name(),
      "val" : sydney.display(),
-     "room": sydney.display_mroom(),},
+     "room": sydney.display_mroom(),
+     "s_irritate": sydney.irritate(5),
+     "m_irritate": sydney.irritate(10),
+     "l_irritate": sydney.irritate(15),
+     "anger": sydney.display_anger()},
     {"name":house.display_name(),
      "val" : house.display(),
-     "room": house.display_mroom(),},
+     "room": house.display_mroom(),
+     "s_irritate": house.irritate(5),
+     "m_irritate": house.irritate(10),
+     "l_irritate": house.irritate(15),
+     "anger": house.display_anger()},
     {"name":kevin.display_name(),
      "val" : kevin.display(),
-     "room": kevin.display_mroom(),}
+     "room": kevin.display_mroom(),
+     "s_irritate": kevin.irritate(5),
+     "m_irritate": kevin.irritate(10),
+     "l_irritate": kevin.irritate(15),
+     "anger": kevin.display_anger()}
 ]
 
 
@@ -203,4 +240,7 @@ char_dialogues = [
 ]
 
 
-print(murderer,"\n", murder_room,"\n", murder_weapon)
+#print(murderer,"\n",murder_room,"\n",murder_weapon)
+
+chars[0]["l_irritate"]
+print(cecil.display_anger())
