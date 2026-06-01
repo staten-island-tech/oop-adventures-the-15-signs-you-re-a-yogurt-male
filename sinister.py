@@ -4,8 +4,8 @@ from numberkisser import CHECKFORINTEGER # what it says on the tin
 from main import play
 from main import initialize
 
-actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact"]
-actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
+actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
+# actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
     p_list = []
     for char in evil.chars:
@@ -96,9 +96,24 @@ rooms = [
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
 global roomwithin
+global days
+days = play.daysleft
 roomwithin = "nowhere"
 roomneeded = "placeholder, not yet updated"
-
+def go_to_sleep():
+            global days
+            play.checkinteraction()
+            if play.CanSleep == False: 
+                print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
+                enterroom()
+            else:
+                    print("After deciding you're done with your investigation, you retire for the day.")
+                    print("~")
+                    print("You awake the next morning, still unfortunately trapped.")
+                    play.bedtime()
+                    days -= 1 
+                    enterroom()
+    
 def enterroom():
     location = "none"
     sleeping = False
@@ -112,17 +127,17 @@ def enterroom():
         #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
         # else:
         #     break
-        if c_location == 7:
-            play.checkinteraction()
-            if play.CanSleep == False: 
-                print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
-                enterroom()
-            else:
-                    print("After deciding you're done with your investigation, you retire for the day.")
-                    print("~")
-                    print("You awake the next morning, still unfortunately trapped.")
-                    play.bedtime()
-                    enterroom()
+        # if c_location == 7:
+        #     play.checkinteraction()
+        #     if play.CanSleep == False: 
+        #         print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
+        #         enterroom()
+        #     else:
+        #             print("After deciding you're done with your investigation, you retire for the day.")
+        #             print("~")
+        #             print("You awake the next morning, still unfortunately trapped.")
+        #             play.bedtime()
+        #             enterroom()
         location = rooms[c_location]
         print(location["disp"])
         global roomneeded 
@@ -162,13 +177,21 @@ def makeanaction():
                  play.raiseinteractioncount()
                  print(roomneeded,roomwithin)
                  roomneeded.printpeople()
+            elif act == 5: 
+                go_to_sleep()
+
 
 
 # FRAMEWORK ABOVE ^^^ Below.. Succint version of what is being done. 
-def startdaycycle():
-    enterroom()
-    makeanaction()
 
 #calling! !
-initialize()
-startdaycycle()
+
+def rungame(): 
+    initialize()
+    global days
+    while days > 0:
+        enterroom()
+        makeanaction()
+    print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
+    "convince your peers to barricade them away before they come after someone else.")
+rungame()
