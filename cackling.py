@@ -96,33 +96,13 @@ dialogues = [
             "Goodbye",
             "[search character]"]}
 ]
-
-c_dialogues = [
-    {"name": "Jonathan Sims",
-     "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
-         "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
-     "initial_1" : "\nI am fine, but it does not seem that everyone else appears to be as well.\n-----",
-     "initial_2" : "\nYou certainly have some nerve to interrupt an archival recording.\n"
-         "I do believe I may have seen {person} carrying {weapon} around... and there was a strange sound coming "
-         "from {room} as well, but I cannot be sure.\n-----",
-     "initial_3" : "\nExcuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?\n-----",
-     "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "\nIndeed.\n-----",
-     "no": "\nWell I'm not sure what to say then, are you satisfied throwing around mindless accusations? Please leave. I do not wish to continue this conversation.\n-----",
-     ">:[": "\n[scowls at you, evidently annoyed]\n-----",
-     "thanks" : "\n[watches you leave]\n---",
-     "goodbye" : "\nGood riddance. please do not return.\n-----",
-     "search": "\nYou demand Jonathan Sims to empty his pockets, which takes quite a while of convincing for him to comply. "
-         "From his pockets he takes out what seems to be a human rib, {self.weapon}, and {random_item}. "
-         "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"
-     }
-]             
+       
 
 def d_setup(num):
     for index, option in enumerate(dialogues[num]["qs"]):
         print(index,":", option)
 def response(char, resp):
-    print(evil.chars[char][resp])
+    print(evil.char_dialogues[char][resp])
 
 #How have you been holding up?
 def initial_1(char):
@@ -131,6 +111,7 @@ def initial_1(char):
         response(char, "unfortunate_1")
         d_setup(5)
         unfortunate(char)
+        char.display_name()
     elif select == 1:                                         #Hey so. Did you kill Julius
         response(char, "initial_3")
         d_setup(3)
@@ -258,7 +239,9 @@ def qround_1(char):
         qround_1(char)
 
 def interact(character):
+    print(evil.chars[character]["anger"])
     qround_1(character)
+
 
 ask = int(input("Who would you like to interact with?  "))
 interact(ask) 
