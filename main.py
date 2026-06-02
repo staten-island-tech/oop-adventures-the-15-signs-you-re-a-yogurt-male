@@ -1,11 +1,14 @@
 # welcome 
 import random
+from sinister import enterroom
+from sinister import makeanaction
 # first murderer EVER generated: mr. whalen 
 Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
-
+global Body_Room
+Body_Room = "not yet selected"
 def initialize():
-    
+    global Body_Room
     Body_Room = random.choice(Murderedrooms_list)
     Murderer = random.choice(character_list)
 
@@ -54,11 +57,19 @@ class detective:
         self.interactedtoday += 1
 
     def bedtime(self):
-         self.daysleft -= 1
-         print(f"You have {self.daysleft} days left to find Julius's killer.")
          self.interactedtoday = 0
          self.TotalEnergy = 5
          self.CanSleep = False
 
 
 play = detective(str(input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
+
+def rungame(): 
+    initialize()
+    print("You awake with a start, lain supine across a cold tile floor./n After hours of no communication with those outside the school, everyone, for the most part, took to different rooms to try and wait out the storm.   ")
+    global days
+    havetime = True
+    while days > 0:
+        enterroom()
+        makeanaction()
+rungame()
