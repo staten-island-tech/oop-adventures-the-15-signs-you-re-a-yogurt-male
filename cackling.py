@@ -194,7 +194,9 @@ def interact(character):
     interacting = "none"
     while evil.chars[character]["anger"] < 40:
         print(evil.chars[character]["anger"])
+        interacting = evil.chars[]
         qround_1(character)
+        
 
 for index, char in enumerate(evil.chars):
     print(index,":", char["name"])
