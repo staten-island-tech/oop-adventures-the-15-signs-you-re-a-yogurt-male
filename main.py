@@ -6,6 +6,8 @@ from sinister import makeanaction
 Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
 global Body_Room
+global Murderer
+Murderer = "not yet"
 Body_Room = "not yet selected"
 def initialize():
     global Body_Room
@@ -67,9 +69,14 @@ play = detective(str(input("Welcome! Before the game begins, please state your n
 def rungame(): 
     initialize()
     print("You awake with a start, lain supine across a cold tile floor./n After hours of no communication with those outside the school, everyone, for the most part, took to different rooms to try and wait out the storm.   ")
+    global Body_Room
     global days
+    global Murderer
+   
+    print(Body_Room)
     havetime = True
     while days > 0:
         enterroom()
         makeanaction()
+    print("Time")
 rungame()

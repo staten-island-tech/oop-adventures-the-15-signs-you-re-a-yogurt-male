@@ -33,5 +33,3 @@ def inspectjuli():
         print("You step over to where she lies.")
     else:
         print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
-
-inspectjuli()
