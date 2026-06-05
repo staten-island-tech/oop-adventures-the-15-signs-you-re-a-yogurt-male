@@ -7,12 +7,12 @@ Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Lib
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
 global Body_Room
 global Murderer
-Murderer = "not yet"
-Body_Room = "not yet selected"
+global days
+Body_Room = random.choice(Murderedrooms_list)
+Murderer = random.choice(character_list)
+days = 3 
+
 def initialize():
-    global Body_Room
-    Body_Room = random.choice(Murderedrooms_list)
-    Murderer = random.choice(character_list)
 
     intro_writing = ["You awake from your shallow rest with a start. ",
     "It took a few moments for you to realize where you were: you're not used to sleeping in a supply closet.",
@@ -32,51 +32,22 @@ def initialize():
     if input("Press anything and then the Enter Key to continue: "):
         print("Intro Complete!")
         
-class detective:
-    def __init__(self, pname, interactedtoday,CanSleep,daysleft,TotalEnergy,CanAct):
-         self.pname = pname
-         self.interactedtoday = interactedtoday
-         self.CanSleep = CanSleep
-         self.daysleft = daysleft
-         self.TotalEnergy = TotalEnergy 
-         self.CanAct = CanAct
-
-    def checkinteraction(self):
-        self.CanSleep = False
-        if self.interactedtoday > 0:
-            self.CanSleep = True
-        else:
-            self.CanSleep = False
-            
-    def checkenergy(self):
-        if self.TotalEnergy <= 0:
-            self.CanAct = False
-        else:
-            self.CanAct = True
-
-    def raiseinteractioncount(self):
-        self.TotalEnergy -= 1
-        self.interactedtoday += 1
-
-    def bedtime(self):
-         self.interactedtoday = 0
-         self.TotalEnergy = 5
-         self.CanSleep = False
-
-
-play = detective(str(input("Welcome! Before the game begins, please state your name: ")),0,False,3,5,True)
 
 def rungame(): 
     initialize()
-    print("You awake with a start, lain supine across a cold tile floor./n After hours of no communication with those outside the school, everyone, for the most part, took to different rooms to try and wait out the storm.   ")
+    print("You awake with a start, lain supine across a cold tile floor.")
+    print(" After hours of no communication with those outside the school, everyone, for the most part, took to different rooms to try and wait out the storm.   ")
     global Body_Room
     global days
     global Murderer
-   
+
     print(Body_Room)
     havetime = True
-    while days > 0:
+
+    daynumb = range(3)
+    for NUMBDAY in range(3): 
         enterroom()
         makeanaction()
-    print("Time")
+        print("Time", days)
+
 rungame()

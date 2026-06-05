@@ -1,10 +1,10 @@
 import evil
 import writing # imports writing system
-from numbernweapons import CHECKFORINTEGER # what it says on the tin 
-from main import play
-from main import initialize
+from playerclass import play
+from murderer import Body_Room
+from murderer import Murderer
+# from main import initialize
 from writing import inspectjuli
-
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
 # actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -14,7 +14,7 @@ def people(room):
             p_list.append(char["name"])
     # print(p_list)
     return p_list
-
+ 
 
 
 class room:
@@ -97,12 +97,9 @@ rooms = [
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
 global roomwithin
-global days
-days = play.daysleft
 roomwithin = "nowhere"
 roomneeded = "placeholder, not yet updated"
 def go_to_sleep():
-            global days
             play.checkinteraction()
             if play.CanSleep == False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
@@ -112,25 +109,26 @@ def go_to_sleep():
                     print("~")
                     print("You awake the next morning, still unfortunately trapped.")
                     play.bedtime()
-                    print(days)
-                    days -= 1 
-                    if days > 0:
-                        enterroom()
-                    else: 
-                        print()
-                        print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
-    "convince your peers to barricade them away before they come after you.")
+    #                 if days > 0:
+    #                     enterroom()
+    #                 else: 
+    #                     print()
+    #                     print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
+    # "convince your peers to barricade them away before they come after you.")
     
 def enterroom():
     location = "none"
     sleeping = False
     while location == "none":
         play.checkenergy()
-        print(days)
         for index, item in enumerate(rooms):
             print(f"{index}: {item["name"]}")
         c_location = (input("What room would you like to enter? Please enter a number:  "))
         c_location = int(c_location)
+        if c_location > 6 or c_location < 0:
+             print("Not a valid room.")
+             c_location = (input("What room would you like to enter? Please enter a number:  "))
+             c_location = int(c_location)
         # if ValueError or :
         #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
         #             c_location = int(input("What room would you like to enter? Please enter a number:  "))
@@ -171,8 +169,6 @@ def makeanaction():
                 else:
                     play.raiseinteractioncount()
                     print("displaying tkinter window")
-                    if Body_Room == roomwithin:
-                        inspectjuli()
             elif act == 1:
                 print("You have left the room.")
                 enterroom()

@@ -23,13 +23,4 @@ def WRITETHATDOWN():
             print("Your pen clatters to the floor as you drop it. You have stopped writing.")
             WritingNow = False
 
-yaona = ["Yes", "No"]
-def inspectjuli():
-    print("Julius is in this room. Do you wish to look closer?")
-    for index, option in enumerate(yaona):
-        print(index, ":", option)
-    choice = int(input("Enter the corresponding integer:"))
-    if choice == 0:
-        print("You step over to where she lies.")
-    else:
-        print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
+
