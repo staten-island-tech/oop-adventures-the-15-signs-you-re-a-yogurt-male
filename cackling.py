@@ -1,4 +1,5 @@
 import evil
+from evil import Char 
 
 
 dialogues = [
@@ -48,12 +49,8 @@ def d_setup(num):
 def response(char, resp):
     print(evil.char_dialogues[char][resp])
 def irritate(char, amount):
-    if amount == 5:
-        evil.chars[char]["s_irritate"]
-    elif amount == 10:
-        evil.chars[char]["m_irritate"]
-    elif amount == 15:
-        evil.chars[char]["l_irritate"]
+    Char.char.irritate(amount)
+
 
 #How have you been holding up?
 def initial_1(char):
@@ -62,7 +59,6 @@ def initial_1(char):
         response(char, "unfortunate_1")
         d_setup(5)
         unfortunate(char)
-        char.display_name()
     elif select == 1:                                         #Hey so. Did you kill Julius
         response(char, "initial_3")
         d_setup(3)
@@ -193,8 +189,8 @@ def qround_1(char):
 def interact(character):
     interacting = "none"
     while evil.chars[character]["anger"] < 40:
-        print(evil.chars[character]["anger"])
-        interacting = evil.chars[]
+        print(Char.character.display_anger())
+        interacting = evil.chars[character]
         qround_1(character)
         
 
@@ -202,4 +198,6 @@ for index, char in enumerate(evil.chars):
     print(index,":", char["name"])
 ask = int(input("Who would you like to interact with?  "))
 interact(ask) 
+
+
 

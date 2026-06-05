@@ -4,7 +4,7 @@ rooms = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "E
 weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
 
-class char:
+class Char:
     def __init__(self, full_name, first_name, room, weapon, anger):
         self.full_name = full_name
         self.first_name = first_name
@@ -31,14 +31,14 @@ def weaponn():
     weaponl.remove(w)
     return (w)
 
-cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
-jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
-sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
-house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
+cecil= Char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
+fulgrim= Char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
+jon= Char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
+whalen = Char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
+wizard = Char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
+sydney = Char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
+house = Char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
+kevin = Char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
 
 char_list = [cecil, fulgrim, jon, whalen, wizard, sydney, house, kevin]
 
@@ -197,7 +197,7 @@ char_dialogues = [
     {"name": wizard.display_name(),
       "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
       "initial_1" : "\nThe wizard does not speak, but whether or not it is unable or does not choose to; you do not know.\n-----",
-      "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {rrand_char()} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
+      "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {rand_char()} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
       "initial_3" : "\nThe Wizard's expression shifts slightly, as if taken aback. You fear you may have angered them.",
       "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
       "unfortunate_1": "\nThey nod, but you are unsure if the gesture is truly directed towards you.\n-----",
