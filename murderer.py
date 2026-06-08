@@ -9,6 +9,6 @@ Body_Room = random.choice(Murderedrooms_list)
 Murderer = random.choice(character_list)
 days = 3 
 
-
-yaona = ["Yes", "No"]
+def bodyfacts(): 
+    if 
 
