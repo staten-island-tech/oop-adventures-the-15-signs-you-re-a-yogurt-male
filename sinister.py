@@ -4,7 +4,7 @@ from playerclass import play
 from murderer import Body_Room
 from murderer import Murderer
 # from main import initialize
-from writing import inspectjuli
+from murderer import inspectjuli
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
 # actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -169,6 +169,7 @@ def makeanaction():
                 else:
                     play.raiseinteractioncount()
                     print("displaying tkinter window")
+                    inspectjuli()
             elif act == 1:
                 print("You have left the room.")
                 enterroom()
@@ -187,8 +188,22 @@ def makeanaction():
             elif act == 5: 
                 go_to_sleep()
 
-    
 
+def inspectjuli():
+     global Body_Room
+     global roomwithin
+     yaona = ["Yes", "No"]
+
+     if Body_Room == roomwithin:
+        print("Julius is in this room. Do you wish to look closer?")
+        for index, option in enumerate(yaona):
+            print(index, ":", option)
+        choice = int(input("Enter the corresponding integer:"))
+        if choice == 0:
+         print("You step over to where she lies.")
+        else:
+         print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
+         
 
 # MEAT ABOVE ^^^ Below.. Succint version of what is being done. 
 

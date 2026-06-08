@@ -47,7 +47,5 @@ def rungame():
     daynumb = range(3)
     for NUMBDAY in range(3): 
         enterroom()
-        makeanaction()
         print("Time", days)
-
 rungame()
