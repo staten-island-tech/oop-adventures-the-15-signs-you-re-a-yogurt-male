@@ -48,7 +48,7 @@ def d_setup(num):
         print(index,":", option)
 def response(char, resp):
     print(evil.char_dialogues[char][resp])
-def irritate(char, amount):
+def iirritate(char, amount):
     Char.char.irritate(amount)
 
 
@@ -56,6 +56,8 @@ def irritate(char, amount):
 def initial_1(char):
     select = int(input("Select a dialogue option:  "))
     if select == 0:                                         #It sure is unfortunate that Julius has died...
+        iirritate(char, 10)
+        print(Char.char.display_anger())
         response(char, "unfortunate_1")
         d_setup(5)
         unfortunate(char)
