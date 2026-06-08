@@ -1,8 +1,8 @@
 import evil
 import writing # imports writing system
 from playerclass import play
-from murderer import Body_Room
-from murderer import Murderer
+from evil import murder_room
+from murderer import bodyfacts
 # from main import initialize
 # from murderer import inspectjuli
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
@@ -117,7 +117,7 @@ def go_to_sleep():
     # "convince your peers to barricade them away before they come after you.")
     
 def makeanaction():
-        global Body_Room
+        global murder_room
         global roomneeded
         global roomwithin 
         a = False
@@ -153,7 +153,7 @@ def makeanaction():
                 return "BEDDED_TIME"
 
 def enterroom():
-    global Body_Room
+    global murder_room
     location = "none"
     sleeping = False
     while location == "none":
@@ -188,22 +188,23 @@ def enterroom():
         global roomwithin
         roomneeded = location["codeterm"]
         roomwithin = location["name"]
-        print(roomwithin, Body_Room)
+        print(roomwithin, murder_room)
 
 
 
 
 def inspectjuli():
-     global Body_Room
+     global murder_room
      global roomwithin
      yaona = ["Yes", "No"]
-     if Body_Room == roomwithin:
+     if murder_room == roomwithin:
         print("Julius is in this room. Do you wish to look closer?")
         for index, option in enumerate(yaona):
             print(index, ":", option)
         choice = int(input("Enter the corresponding integer:"))
         if choice == 0:
          print("You step over to where she lies.")
+         bodyfacts()
         else:
          print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
          
