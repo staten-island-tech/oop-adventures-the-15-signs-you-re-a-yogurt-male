@@ -153,6 +153,7 @@ def makeanaction():
                 return "BEDDED_TIME"
 
 def enterroom():
+    global Body_Room
     location = "none"
     sleeping = False
     while location == "none":
@@ -187,14 +188,15 @@ def enterroom():
         global roomwithin
         roomneeded = location["codeterm"]
         roomwithin = location["name"]
-        makeanaction()
+        print(roomwithin, Body_Room)
+
+
 
 
 def inspectjuli():
      global Body_Room
      global roomwithin
      yaona = ["Yes", "No"]
-
      if Body_Room == roomwithin:
         print("Julius is in this room. Do you wish to look closer?")
         for index, option in enumerate(yaona):

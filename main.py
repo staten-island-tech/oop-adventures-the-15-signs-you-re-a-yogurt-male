@@ -47,5 +47,7 @@ def rungame():
     daynumb = range(3)
     for NUMBDAY in range(3): 
         enterroom()
-        print("Time", days)
+        if makeanaction() == "BEDDED_TIME":
+            NUMBDAY += 1 
+            print("Time", days)
 rungame()
