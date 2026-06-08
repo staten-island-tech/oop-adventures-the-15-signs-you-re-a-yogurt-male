@@ -1,9 +1,10 @@
 import evil
 import writing # imports writing system
-from numberkisser import CHECKFORINTEGER # what it says on the tin 
-from main import play
-from main import initialize
-
+from playerclass import play
+from murderer import Body_Room
+from murderer import Murderer
+# from main import initialize
+from writing import inspectjuli
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
 # actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -13,7 +14,7 @@ def people(room):
             p_list.append(char["name"])
     # print(p_list)
     return p_list
-
+ 
 
 
 class room:
@@ -96,12 +97,9 @@ rooms = [
 # inital interaction value thign  - use a class for detective's variables 
 global roomneeded
 global roomwithin
-global days
-days = play.daysleft
 roomwithin = "nowhere"
 roomneeded = "placeholder, not yet updated"
 def go_to_sleep():
-            global days
             play.checkinteraction()
             if play.CanSleep == False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
@@ -111,8 +109,12 @@ def go_to_sleep():
                     print("~")
                     print("You awake the next morning, still unfortunately trapped.")
                     play.bedtime()
-                    days -= 1 
-                    enterroom()
+    #                 if days > 0:
+    #                     enterroom()
+    #                 else: 
+    #                     print()
+    #                     print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
+    # "convince your peers to barricade them away before they come after you.")
     
 def enterroom():
     location = "none"
@@ -123,8 +125,13 @@ def enterroom():
             print(f"{index}: {item["name"]}")
         c_location = (input("What room would you like to enter? Please enter a number:  "))
         c_location = int(c_location)
-        # if ValueError or  c_location > 7 or c_location > 7:
+        if c_location > 6 or c_location < 0:
+             print("Not a valid room.")
+             c_location = (input("What room would you like to enter? Please enter a number:  "))
+             c_location = int(c_location)
+        # if ValueError or :
         #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
+        #             c_location = int(input("What room would you like to enter? Please enter a number:  "))
         # else:
         #     break
         # if c_location == 7:
@@ -147,6 +154,7 @@ def enterroom():
 
     
 def makeanaction():
+        global Body_Room
         global roomneeded
         global roomwithin 
         a = False
@@ -160,7 +168,7 @@ def makeanaction():
                     print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
                 else:
                     play.raiseinteractioncount()
-                    print("tkinter window")
+                    print("displaying tkinter window")
             elif act == 1:
                 print("You have left the room.")
                 enterroom()
@@ -175,23 +183,13 @@ def makeanaction():
                     print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
                 else:
                  play.raiseinteractioncount()
-                 print(roomneeded,roomwithin)
                  roomneeded.printpeople()
             elif act == 5: 
                 go_to_sleep()
 
+    
 
 
-# FRAMEWORK ABOVE ^^^ Below.. Succint version of what is being done. 
+# MEAT ABOVE ^^^ Below.. Succint version of what is being done. 
 
 #calling! !
-
-def rungame(): 
-    initialize()
-    global days
-    while days > 0:
-        enterroom()
-        makeanaction()
-    print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
-    "convince your peers to barricade them away before they come after someone else.")
-rungame()
