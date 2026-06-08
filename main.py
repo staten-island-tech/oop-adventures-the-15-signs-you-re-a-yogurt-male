@@ -45,9 +45,11 @@ def rungame():
     havetime = True
 
     daynumb = range(3)
-    for NUMBDAY in range(3): 
+    NUMBDAY = 0 
+    while NUMBDAY in range(3): 
         enterroom()
         if makeanaction() == "BEDDED_TIME":
             NUMBDAY += 1 
-            print("Time", days)
+            print("Time", NUMBDAY)
+    print("You have run out of time..")
 rungame()
