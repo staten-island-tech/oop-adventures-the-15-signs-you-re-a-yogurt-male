@@ -4,7 +4,7 @@ from playerclass import play
 from murderer import Body_Room
 from murderer import Murderer
 # from main import initialize
-from murderer import inspectjuli
+# from murderer import inspectjuli
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
 # actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -116,6 +116,42 @@ def go_to_sleep():
     #                     print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
     # "convince your peers to barricade them away before they come after you.")
     
+def makeanaction():
+        global Body_Room
+        global roomneeded
+        global roomwithin 
+        a = False
+        while a == False:
+            for index, action in enumerate(actionswpeople):
+                print(f"{index}: {action}")
+            act = int(input("What would you like to do?:"))
+            if act == 0:
+                play.checkenergy()
+                if play.CanAct == False:
+                    print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
+                else:
+                    play.raiseinteractioncount()
+                    print("displaying tkinter window")
+                    inspectjuli()
+            elif act == 1:
+                print("You have left the room.")
+                enterroom()
+            elif act == 2:
+                print("You take out your trusty Marble Notebook and Pen.")
+                writing.WRITETHATDOWN()
+            elif act == 3:
+                writing.ReadJournal()
+            elif act == 4:
+                play.checkenergy()
+                if play.CanAct == False:
+                    print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
+                else:
+                 play.raiseinteractioncount()
+                 roomneeded.printpeople()
+            elif act == 5: 
+                go_to_sleep()
+                return "BEDDED_TIME"
+
 def enterroom():
     location = "none"
     sleeping = False
@@ -151,42 +187,7 @@ def enterroom():
         global roomwithin
         roomneeded = location["codeterm"]
         roomwithin = location["name"]
-
-    
-def makeanaction():
-        global Body_Room
-        global roomneeded
-        global roomwithin 
-        a = False
-        while a == False:
-            for index, action in enumerate(actionswpeople):
-                print(f"{index}: {action}")
-            act = int(input("What would you like to do?:"))
-            if act == 0:
-                play.checkenergy()
-                if play.CanAct == False:
-                    print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
-                else:
-                    play.raiseinteractioncount()
-                    print("displaying tkinter window")
-                    inspectjuli()
-            elif act == 1:
-                print("You have left the room.")
-                enterroom()
-            elif act == 2:
-                print("You take out your trusty Marble Notebook and Pen.")
-                writing.WRITETHATDOWN()
-            elif act == 3:
-                writing.ReadJournal()
-            elif act == 4:
-                play.checkenergy()
-                if play.CanAct == False:
-                    print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
-                else:
-                 play.raiseinteractioncount()
-                 roomneeded.printpeople()
-            elif act == 5: 
-                go_to_sleep()
+        makeanaction()
 
 
 def inspectjuli():
