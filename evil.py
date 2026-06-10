@@ -3,8 +3,8 @@ import random
 rooms = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "Engineering Henriques", "Gym", "Goyco Russian"]
 weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
-char_list = ["Cecil", "Fulgrim", "Jon", "Whalen", "Wizards", "Sydney", "House", "Kevin"]
-class char:
+
+class Char:
     def __init__(self, full_name, first_name, room, weapon, anger):
         self.full_name = full_name
         self.first_name = first_name
@@ -31,92 +31,69 @@ def weaponn():
     weaponl.remove(w)
     return (w)
 
-cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
-jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
-sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
-house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
+cecil= Char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
+fulgrim= Char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
+jon= Char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
+whalen = Char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
+wizard = Char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
+sydney = Char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
+house = Char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
+kevin = Char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
+
+char_list = [cecil, fulgrim, jon, whalen, wizard, sydney, house, kevin]
 
 chars = [
     {"name": cecil.display_name(),
      "val": cecil.display(),
      "room": cecil.display_mroom(),
-     "s_irritate": cecil.irritate(5),
-     "m_irritate": cecil.irritate(10),
-     "l_irritate": cecil.irritate(15),
      "anger": cecil.display_anger(),
      "codeterm": cecil,},
     {"name": fulgrim.display_name(), 
      "val" : fulgrim.display(),
      "room": fulgrim.display_mroom(),
-     "s_irritate": fulgrim.irritate(5),
-     "m_irritate": fulgrim.irritate(10),
-     "l_irritate": fulgrim.irritate(15),
      "anger": fulgrim.display_anger(),
      "codeterm": fulgrim},
     {"name": jon.display_name(),
      "val" : jon.display(),
      "room": jon.display_mroom(),
-     "s_irritate": jon.irritate(5),
-     "m_irritate": jon.irritate(10),
-     "l_irritate": jon.irritate(15),
      "anger": jon.display_anger(),
      "codeterm": jon},
     {"name":whalen.display_name(),
      "val" : whalen.display(),
      "room": whalen.display_mroom(),
-     "s_irritate": whalen.irritate(5),
-     "m_irritate": whalen.irritate(10),
-     "l_irritate": whalen.irritate(15),
      "anger": whalen.display_anger(),
      "codeterm": whalen},
     {"name":wizard.display_name(),
      "val" : wizard.display(),
      "room": wizard.display_mroom(),
-     "s_irritate": wizard.irritate(5),
-     "m_irritate": wizard.irritate(10),
-     "l_irritate": wizard.irritate(15),
      "anger": wizard.display_anger(),
      "codeterm": wizard},
     {"name":sydney.display_name(),
      "val" : sydney.display(),
      "room": sydney.display_mroom(),
-     "s_irritate": sydney.irritate(5),
-     "m_irritate": sydney.irritate(10),
-     "l_irritate": sydney.irritate(15),
      "anger": sydney.display_anger(),
      "codeterm": sydney},
     {"name":house.display_name(),
      "val" : house.display(),
      "room": house.display_mroom(),
-     "s_irritate": house.irritate(5),
-     "m_irritate": house.irritate(10),
-     "l_irritate": house.irritate(15),
      "anger": house.display_anger(),
      "codeterm": house},
     {"name":kevin.display_name(),
      "val" : kevin.display(),
      "room": kevin.display_mroom(),
-     "s_irritate": kevin.irritate(5),
-     "m_irritate": kevin.irritate(10),
-     "l_irritate": kevin.irritate(15),
      "anger": kevin.display_anger(),
      "codeterm": kevin}
 ]
 
-
 weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 
 count=0
-murderer_choose = random.choice(chars)
+murderer_choose = random.choice(char_list)
 while count < 10:
     count+=1
-    char_list.append(murderer_choose["name"])
+    char_list.append(murderer_choose)
 count=0
-murderer = murderer_choose["name"]
+murderer = murderer_choose.display_name()
 murder_room = random.choice(rooms)
 while count < 10:
     count+=1
@@ -129,11 +106,15 @@ while count < 10:
     weapon.append(murder_weapon)
 #print(murder["val"])
 
+def rand_char():
+    for character in char_list:
+        return character.display_name()
+
 char_dialogues = [
     {"name": cecil.display_name(),
      "intro": "\nHello there! I see you've heard about the death of our friend, Caesar sure was a good one.\n-----",
      "initial_1" : "\nOh you know, it's standard for a few interns- ahem. Students- not to make it through the testing process :)\n-----",
-     "initial_2" : f"\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{random.choice(char_list)} was walking around {random.choice(rooms)} with {random.choice(weapon)} a while ago, but I wouldn't think much of it.\n-----",
+     "initial_2" : f"\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{rand_char()} was walking around {random.choice(rooms)} with {random.choice(weapon)} a while ago, but I wouldn't think much of it.\n-----",
      "initial_3" : "\nHah- killed? Julius? What next, you'll be accusing me of purchasing wheat and wheat byproducts? What kind of blasphemy do you think I am?\n----- ",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "\nLike I said, this happens often. I wouldn't be worried.\n-----",
@@ -163,7 +144,7 @@ char_dialogues = [
          "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
      "initial_1" : "\nI am fine, but it does not seem that everyone else appears to be as well.\n-----",
      "initial_2" : "\nYou certainly have some nerve to interrupt an archival recording.\n"
-         f"I do believe I may have seen {random.choice(char_list)} carrying {random.choice(weapon)} around... and there was a strange sound coming "
+         f"I do believe I may have seen {rand_char()} carrying {random.choice(weapon)} around... and there was a strange sound coming "
          f"from {random.choice(rooms)} as well, but I cannot be sure.\n-----",
      "initial_3" : "\nExcuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?\n-----",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
@@ -189,24 +170,24 @@ char_dialogues = [
      "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
          "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name":wizard.display_name(),
-     "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
-     "initial_1" : "\nThe wizard does not speak, but whether or not it is unable or does not choose to; you do not know.\n-----",
-     "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {random.choice(char_list)} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
-     "initial_3" : "\nThe Wizard's expression shifts slightly, as if taken aback. You fear you may have angered them.",
-     "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "\nThey nod, but you are unsure if the gesture is truly directed towards you.\n-----",
-     "no": "The wizard does not like your accusations.",
-     ">:[": "The wizard's dislike of you grows.",
-     "thanks" : "You feel the wizard's gaze on your back as you leave.",
-     "goodbye" : "The wizard's glare, though not initially with ill intent, is now accompanies by an acute irritiation that pierces right through you.\n-----",
-     "search": "\nYou lift up the wizard's hat, and immediately regret this decision, as you remember in one of your history classes that touching a wizard's hat is the sign of utmost disrespect. "
+    {"name": wizard.display_name(),
+      "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
+      "initial_1" : "\nThe wizard does not speak, but whether or not it is unable or does not choose to; you do not know.\n-----",
+      "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {rand_char()} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
+      "initial_3" : "\nThe Wizard's expression shifts slightly, as if taken aback. You fear you may have angered them.",
+      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
+      "unfortunate_1": "\nThey nod, but you are unsure if the gesture is truly directed towards you.\n-----",
+      "no": "The wizard does not like your accusations.",
+      ">:[": "The wizard's dislike of you grows.",
+      "thanks" : "You feel the wizard's gaze on your back as you leave.",
+      "goodbye" : "The wizard's glare, though not initially with ill intent, is now accompanies by an acute irritiation that pierces right through you.\n-----",
+      "search": "\nYou lift up the wizard's hat, and immediately regret this decision, as you remember in one of your history classes that touching a wizard's hat is the sign of utmost disrespect. "
          f"The wizard undoubtedly despises you now, and under their hat you can see {random.choice(items)}, {wizard.display_mweapon()}, and a mysterious orb. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":sydney.display_name(),
      "intro": "\nHey! There seems to be a lot of commotion this morning, right? [awkward chuckle]\n-----",
      "initial_1" : "\nSorry? Is there something that happened?\n-----",
-     "initial_2" : f"\nNothing much! Just the rain... falling down... down... and down...\nI also did find {random.choice(weapon)} when looking around {random.choice(rooms)}, right after {random.choice(char_list)} walked out!\nNot sure why you'd need to know that, though.\n----- ",
+     "initial_2" : f"\nNothing much! Just the rain... falling down... down... and down...\nI also did find {random.choice(weapon)} when looking around {random.choice(rooms)}, right after {rand_char()} walked out!\nNot sure why you'd need to know that, though.\n----- ",
      "initial_3" : "\nShe's dead?? I can't believe this... and you think I'd be the one to kill her?\n",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "Julius is dead?? Caesar? Julius Caesar? Oh I knew those birds would drive us all crazy one day. They've been singing about the Ides of March for as long as I can remember. How unfortunate.\n-----",
@@ -247,5 +228,244 @@ char_dialogues = [
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
 ]
 
-
 #print(murderer,"\n",murder_room,"\n",murder_weapon)
+
+dialogues = [
+    {"q" : "initial",
+     "qs": ["How have you been holding up?",
+            "Hey! Have you seen anything lately?",
+            "Are you the one who killed Julius??",
+            "[search character]"]},
+    #How have you been holding up?
+    {"q" :"initial_1" ,
+     "qs": ["It sure is unfortunate that Julius has died...",
+            "Hey so. Did you kill Julius",
+            "Have you seen anything unusual lately perhaps?",
+            "[Search character]"]},
+    #Hey! Have you seen anything lately?
+    {"q" :"initial_2" ,
+     "qs": ["Okay, thank you!",
+            "Goodbye",
+            "[search character]"]},
+    #Are you the one who killed Julius??
+    {"q" :"initial_3" ,
+     "qs": ["Well who did then?", 
+            "Okay. Have you seen anything?",
+            "I don't believe you", 
+            "Goodbye",]},
+    #[Search character]
+    {"q" :"initial_4" ,
+     "qs": ["Yes", "No"]},
+
+    #It sure is unfortunate that Julius has died
+    {"q" :"unfortunate_1" ,
+     "qs": ["Have you seen anything unusual lately perhaps?", 
+            "Hey so. Did you kill Julius", 
+            "Goodbye", 
+            "[search character]"]},
+    #I don't believe you
+    {"q" : "accusation_1" ,
+     "qs": [">:(", 
+            "Goodbye",
+            "[search character]"]}
+]
+       
+
+def d_setup(num, char):
+    ch = char_list[char]
+    if ch.display_anger() < 25:
+        for index, option in enumerate(dialogues[num]["qs"]):
+            print(index,":", option)
+def response(char, resp):
+    print(char_dialogues[char][resp])
+def iirritate(char, amount):
+    ch = char_list[char]
+    ch.irritate(amount)
+    print(ch.display_anger())
+
+
+#How have you been holding up?
+def initial_1(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         #It sure is unfortunate that Julius has died...
+            response(char, "unfortunate_1")
+            d_setup(5, char)
+            unfortunate(char)
+        elif select == 1:                                         #Hey so. Did you kill Julius
+            iirritate(char, 10)
+            response(char, "initial_3")
+            d_setup(3, char)
+            initial_3(char)
+        elif select == 2:                                         #Have you seen anything unusual lately perhaps?
+            response(char, "initial_2")
+            d_setup(2, char)  
+            initial_2(char)
+        elif select == 3:                                         #[Search character]
+            response(char, "initial_4")
+            d_setup(4, char)
+            initial_4(char)
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            initial_1(char)
+
+#Have you seen anything lately
+def initial_2(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         #Okay, thank you!
+            response(char, "thanks")
+        elif select == 1:                                         #Goodbye
+            iirritate(char, 5)
+            response(char, "goodbye")
+        elif select == 2:                                         #[search character]
+            response(char, "initial_4")
+            d_setup(4)
+            initial_4(char)
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            initial_2(char)
+
+#are you the one who killed julius
+def initial_3(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         #well who did then?
+            response(char, "initial_2")
+            d_setup(2, char)
+            initial_2(char)
+        elif select == 1:                                         #Okay. Have you seen anything?
+            response(char, "initial_2")
+            d_setup(2, char)
+            initial_2(char)
+        elif select == 2:                                         #I don't believe you
+            iirritate(char, 10)
+            response(char, "no")
+            d_setup(6, char)
+            accusation(char)
+        elif select == 3:                                         #Goodbye
+            iirritate(char, 5, char)
+            response(char, "goodbye")
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            initial_3(char)
+
+#search char
+def initial_4(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         #yes
+            iirritate(char, 15)
+            response(char, "search")
+        elif select == 1:                                       #no
+            iirritate(char, 5)
+            response(char, "goodbye")
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            initial_4(char)
+
+#it sure is unfortunate that julius has died...
+def unfortunate(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         #Have you seen anything unusual lately perhaps?
+            response(char, "initial_2")
+            d_setup(2, char)
+            initial_2(char)
+        elif select == 1:                                         #Hey so. Did you kill Julius
+            iirritate(char, 10)
+            response(char, "initial_3")
+            d_setup(3, char)
+            initial_3(char)
+        elif select == 2:                                         #Goodbye
+            iirritate(char, 5)
+            response(char, "goodbye")
+        elif select == 3:                                         #[search character]
+            response (char, "search")
+            d_setup(4, char)
+            initial_4(char)
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            unfortunate(char)
+
+#i don't believe you
+def accusation(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                           #>:[
+            iirritate(char, 10)
+            response(char, "no")
+            d_setup(6, char)
+            accusation(char)
+        elif select == 1:                                         #goodbye
+            iirritate(char, 5)
+            response(char, "goodbye")
+        elif select == 2:                                         #[search character]
+            response(char, "initial_4")
+            d_setup(4, char)
+            initial_4(char)
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            accusation(char)
+
+#intro
+def qround_1(char):
+    ch = char_list[char]
+    if ch.display_anger() >= 25:
+        print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
+    else:
+        response(char, "intro")
+        d_setup(0, char)
+        select = int(input("Select a dialogue option:  "))
+        if select == 0:                                         # How have you been holding up?
+            response(char, "initial_1")
+            d_setup(1, char)
+            initial_1(char)
+        elif select == 1:                                       #Hey! Have you seen anything lately?
+            response(char, "initial_2")
+            d_setup(2, char)
+            initial_2(char)
+        elif select == 2:                                       #Are you the one who killed Julius??
+            iirritate(char, 10)
+            response(char, "initial_3")
+            d_setup(3, char)
+            initial_3(char)
+        elif select == 3:                                       #[search character]
+            response(char, "initial_4")
+            d_setup(4, char)
+            initial_4(char)
+        else:
+            print("\nDialogue option does not exist. Please choose again")
+            qround_1(char)
+
+interacting = "none"
+def interact(character):
+    interacting = char_list[character]
+    ch = char_list[character]
+    print(ch.display_anger())
+    qround_1(character)
+        
+
+for index, char in enumerate(chars):
+    print(index,":", char["name"])
+ask = int(input("Who would you like to interact with?  "))
+interact(ask) 
+
