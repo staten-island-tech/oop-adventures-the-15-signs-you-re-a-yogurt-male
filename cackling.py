@@ -1,57 +1,5 @@
 import evil
 
-initial = ["How have you been holding up?",
-           "Hey! Have you seen anything lately?",
-           "Are you the one who killed Julius??",
-           "[search character]"]
-#How have you been holding up?
-initial_1 = ["It sure is unfortunate that Julius has died...",
-             "Hey so. Did you kill Julius",
-             "Have you seen anything unusual lately perhaps?"
-             "[Search character]"]
-#Hey! Have you seen anything lately?
-initial_2 = ["Okay, thank you!",
-             "Goodbye",
-             "[search character]"]
-#Are you the one who killed Julius??
-initial_3 = ["Well who did then?", 
-             "Okay. Have you seen anything?",
-             "I don't believe you", 
-             "Goodbye",
-             ""]
-#[Search character]
-initial_4 = ["Yes", "No"]
-
-#It sure is unfortunate that Julius has died
-unfortunate_1 = ["Have you seen anything unusual lately perhaps?", 
-             "Okay, thank you!", 
-             "Goodbye", 
-             "[search character]"]
-#I don't believe you
-accusation_1 = [">:(", 
-                "Goodbye",
-                "[search character]"]
-
-dialogues = [
-    {"name": "Jonathan Sims",
-     "intro": "15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins…\n"
-         "It is not often that I find myself facing the murder of a classmate within a school building…",
-     "initial_1" : "I am fine, but it does not seem that everyone else appears to be as well.",
-     "initial_2" : "You certainly have some nerve to interrupt an archival recording. Make it quick-\n"
-         "I do believe I may have seen {person} carrying {weapon} around… there was a strange sound coming "
-         "from {room} as well but I cannot be sure.",
-     "initial_3" : "Excuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?",
-     "initial_4" : "Are you sure you want to search this character? You will gain no useful information from this action.",
-     "unfortunate_1": "I was walking past {room} earlier and did see {person} with {weapon}, but I am unsure.",
-     }
-]
-
-
-def interact(character):
-    print("introduction")
-    for index, option in initial:
-        print(index,":", option)
-    select = int(input("Select a dialogue option:  "))
 
 dialogues = [
     {"q" : "initial",
@@ -92,33 +40,20 @@ dialogues = [
             "Goodbye",
             "[search character]"]}
 ]
-
-c_dialogues = [
-    {"name": "Jonathan Sims",
-     "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
-         "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
-     "initial_1" : "\nI am fine, but it does not seem that everyone else appears to be as well.\n-----",
-     "initial_2" : "\nYou certainly have some nerve to interrupt an archival recording.\n"
-         "I do believe I may have seen {person} carrying {weapon} around... and there was a strange sound coming "
-         "from {room} as well, but I cannot be sure.\n-----",
-     "initial_3" : "\nExcuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?\n-----",
-     "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "\nIndeed.\n-----",
-     "no": "\nWell I'm not sure what to say then, are you satisfied throwing around mindless accusations? Please leave. I do not wish to continue this conversation.\n-----",
-     ">:[": "\n[scowls at you, evidently annoyed]\n-----",
-     "thanks" : "\n[watches you leave]\n---",
-     "goodbye" : "\nGood riddance. please do not return.\n-----",
-     "search": "\nYou demand Jonathan Sims to empty his pockets, which takes quite a while of convincing for him to comply. "
-         "From his pockets he takes out what seems to be a human rib, {self.weapon}, and {random_item}. "
-         "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"
-     }
-]             
+       
 
 def d_setup(num):
     for index, option in enumerate(dialogues[num]["qs"]):
         print(index,":", option)
 def response(char, resp):
-    print(evil.chars[char][resp])
+    print(evil.char_dialogues[char][resp])
+def irritate(char, amount):
+    if amount == 5:
+        evil.chars[char]["s_irritate"]
+    elif amount == 10:
+        evil.chars[char]["m_irritate"]
+    elif amount == 15:
+        evil.chars[char]["l_irritate"]
 
 #How have you been holding up?
 def initial_1(char):
@@ -127,6 +62,7 @@ def initial_1(char):
         response(char, "unfortunate_1")
         d_setup(5)
         unfortunate(char)
+        char.display_name()
     elif select == 1:                                         #Hey so. Did you kill Julius
         response(char, "initial_3")
         d_setup(3)
@@ -253,9 +189,15 @@ def qround_1(char):
         print("\nDialogue option does not exist. Please choose again")
         qround_1(char)
 
-def interact(character):
-    qround_1(character)
 
+def interact(character):
+    interacting = "none"
+    while evil.chars[character]["anger"] < 40:
+        print(evil.chars[character]["anger"])
+        qround_1(character)
+
+for index, char in enumerate(evil.chars):
+    print(index,":", char["name"])
 ask = int(input("Who would you like to interact with?  "))
 interact(ask) 
 

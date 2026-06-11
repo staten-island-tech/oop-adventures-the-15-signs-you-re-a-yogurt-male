@@ -1,12 +1,21 @@
 import evil
-
-actions = ["See room", "Interact", "Leave Room"]
+import writing # imports writing system
+from playerclass import play
+from evil import murder_room
+from murderer import bodyfacts
+# from main import initialize
+# from murderer import inspectjuli
+actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
+# actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
     p_list = []
     for char in evil.chars:
         if char["room"] == room:
             p_list.append(char["name"])
+    # print(p_list)
     return p_list
+ 
+
 
 class room:
     def __init__(self, name, desc, people):
@@ -20,6 +29,20 @@ class room:
         #insert code for image display
         print("room shown")
 
+    def printpeople(self):
+        if len(self.people) <= 0: 
+            (self.people).append("Nobody")
+            print("There is nobody here to speak to.")
+        else:
+            for indexnumb, person in enumerate(self.people):
+                print(indexnumb, ":", person)
+            speak = int(input("Who would you like to speak to?"))
+            print(f"Atm, you {play.pname} speaking to: {self.people[speak]}. WHEN DIALOG FUNCTION DONE, CHANGE THIS LINE! ")
+   
+    def countpeople(self):
+        peoplecount = len(self.people)
+        if peoplecount <= 0:
+            anyppl = False
 caf = room("Cafeteria",
            "Most of the usually blinding lights are off, with a few flickering lazily, providing just enough light for you to see. " \
            "Through the basement windows you can see water leaking through, though not enough to flood the cafeteria yet. ",
@@ -50,44 +73,124 @@ goyco = room("Goyco Russian",
             "As you listen to it rattle on, you see the desks disturbed and several overturned chairs. " \
             "The last person to have been in this room must have really made an effort to show their dislike of it. ",
             people("Goyco Russian"))
+supplycloset = room("Supply Closet", "HONK SHOOOO MIMIMI.", [])
 
 rooms = [
-    {"name": "Cafeteria",
+    {"name": "Cafeteria", "codeterm": caf, 
      "disp": caf.display_room()}, 
-    {"name": "Compsci Lab",
+    {"name": "Compsci Lab", "codeterm": compsci,
      "disp": compsci.display_room()}, 
-    {"name": "Auditorium",
+    {"name": "Auditorium", "codeterm": aud,
      "disp": aud.display_room()},
-    {"name": "Secret pool on the roof",
+    {"name": "Secret pool on the roof", "codeterm": pool, 
      "disp": pool.display_room()},
-    {"name": "Engineering Henriques",
+    {"name": "Engineering Henriques", "codeterm": engineering, 
      "disp": engineering.display_room()},
-    {"name": "Gym",
+    {"name": "Gym", "codeterm": gym, 
      "disp": gym.display_room()},
-    {"name": "Goyco Russian",
-     "disp": goyco.display_room()}]
+    {"name": "Goyco Russian", "codeterm": goyco, 
+     "disp": goyco.display_room()}, 
+    # {"name": "The Supply Closet", "codeterm": supplycloset, "disp": "" }
+    
+    ]
 
-location = "none"
-while location == "none":
-    for index, item in enumerate(rooms):
-        print(f"{index}: {item["name"]}")
-    c_location = int(input("What room would you like to enter? Please enter a number:  "))
-    location = c_location
-    for indexx, itemm in enumerate(rooms):
-        if c_location == indexx:
-            c_location = itemm["name"]
-            print(itemm["disp"])
-    a = False
-    while a == False:
-        for index, action in enumerate(actions):
-            print(f"{index}: {action}")
-        act = int(input("What would you like to do?  "))
-        if act == 0:
-            print("tkinter window")
-        elif act == 1:
-            speak = input("Who would you like to speak to?  ")
-        elif act == 2:
-            print("You have left the room.")
-            location = "none"
-            a = True
-            
+
+global roomneeded
+global roomwithin
+roomwithin = "nowhere"
+roomneeded = "placeholder, not yet updated"
+def go_to_sleep():
+            play.checkinteraction()
+            if play.CanSleep == False: 
+                print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
+                enterroom()
+            else:
+                    print("After deciding you're done with your investigation, you retire for the day.")
+                    print("~")
+                    print("You awake the next morning, still unfortunately trapped.")
+                    play.bedtime()
+    #                 if days > 0:
+    #                     enterroom()
+    #                 else: 
+    #                     print()
+    #                     print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
+    # "convince your peers to barricade them away before they come after you.")
+
+def enterroom():
+    global murder_room
+    location = "none"
+    sleeping = False
+    while location == "none":
+        play.checkenergy()
+        for index, item in enumerate(rooms):
+            print(f"{index}: {item["name"]}")
+        c_location = (input("What room would you like to enter? Please enter a number:  "))
+        c_location = int(c_location)
+        if c_location > 6 or c_location < 0:
+             print("Not a valid room.")
+             c_location = (input("What room would you like to enter? Please enter a number:  "))
+             c_location = int(c_location)
+        location = rooms[c_location]
+        print(location["disp"])
+        global roomneeded 
+        global roomwithin
+        roomneeded = location["codeterm"]
+        roomwithin = location["name"]
+        print(roomwithin, murder_room)
+        
+def inspectjuli():
+     global murder_room
+     global roomwithin
+     yaona = ["Yes", "No"]
+     if murder_room == roomwithin:
+        print("Julius is in this room. Do you wish to look closer?")
+        for index, option in enumerate(yaona):
+            print(index, ":", option)
+        choice = int(input("Enter the corresponding integer:"))
+        if choice == 0:
+         print("You step over to where she lies.")
+         bodyfacts()
+        else:
+         print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
+
+def makeanaction():
+        global murder_room
+        global roomneeded
+        global roomwithin 
+        a = False
+        while a == False:
+            for index, action in enumerate(actionswpeople):
+                print(f"{index}: {action}")
+            act = int(input("What would you like to do?:"))
+            if act == 0:
+                play.checkenergy()
+                if play.CanAct == False:
+                    print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
+                else:
+                    play.raiseinteractioncount()
+                    print("displaying tkinter window")
+                    inspectjuli()
+            elif act == 1:
+                print("You have left the room.")
+                enterroom()
+            elif act == 2:
+                print("You take out your trusty Marble Notebook and Pen.")
+                writing.WRITETHATDOWN()
+            elif act == 3:
+                writing.ReadJournal()
+            elif act == 4:
+                play.checkenergy()
+                if play.CanAct == False:
+                    print("Your thoughts are slowed by fatigue and you fail, horribly, to properly converse with anyone. Get some rest!")
+                else:
+                 play.raiseinteractioncount()
+                 roomneeded.printpeople()
+            elif act == 5: 
+                go_to_sleep()
+                return "BEDDED_TIME"
+
+         
+
+# MEAT ABOVE ^^^ Below.. Succint version of what is being done. 
+
+#calling! !

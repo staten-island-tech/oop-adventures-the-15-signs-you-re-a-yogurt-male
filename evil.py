@@ -1,15 +1,16 @@
 import random
 
 rooms = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "Engineering Henriques", "Gym", "Goyco Russian"]
-weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
-items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter"]
+weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
+items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
+char_list = ["Cecil", "Fulgrim", "Jon", "Whalen", "Wizards", "Sydney", "House", "Kevin"]
 class char:
-    def __init__(self, full_name, first_name, room, weapon):
+    def __init__(self, full_name, first_name, room, weapon, anger):
         self.full_name = full_name
         self.first_name = first_name
         self.room = room
         self.weapon = weapon
-
+        self.anger = anger
     def display(self):
         info = (f"Murderer: {self.full_name}\nRoom: {self.room}\nWeapon: {self.weapon}")
         return info
@@ -19,28 +20,120 @@ class char:
         return self.room
     def display_mweapon(self):
         return self.weapon
+    def irritate(self, val):
+        self.anger += val
+    def display_anger(self):
+        return self.anger
+        
     
 def weaponn():
-    w = random.choice(weapon)
-    weapon.remove(w)
+    w = random.choice(weaponl)
+    weaponl.remove(w)
     return (w)
 
-cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn())
-fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn())
-jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn())
-whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn())
-wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn())
-sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn())
-house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn())
-kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn())
+cecil= char("Cecil Gershwin Palmer", "Cecil", random.choice(rooms), weaponn(), 0)
+fulgrim= char("Fulgrim", "Fulgrim", random.choice(rooms), weaponn(), 0)
+jon= char("Jonathan Sims", "Jon", random.choice(rooms), weaponn(), 0)
+whalen = char("Mr. Whalen", "Mr. Whalen", random.choice(rooms), weaponn(), 0)
+wizard = char("The Wizards is an Animal", "Wizard", random.choice(rooms), weaponn(), 0)
+sydney = char("Sydney Sargent", "Sydney", random.choice(rooms), weaponn(), 0)
+house = char("Dr. Gregory House", "House", random.choice(rooms), weaponn(), 0)
+kevin = char("The Great and Mighty Kevin", "Kevin", random.choice(rooms), weaponn(), 0)
 
 chars = [
     {"name": cecil.display_name(),
      "val": cecil.display(),
      "room": cecil.display_mroom(),
+     "s_irritate": cecil.irritate(5),
+     "m_irritate": cecil.irritate(10),
+     "l_irritate": cecil.irritate(15),
+     "anger": cecil.display_anger(),
+     "codeterm": cecil,},
+    {"name": fulgrim.display_name(), 
+     "val" : fulgrim.display(),
+     "room": fulgrim.display_mroom(),
+     "s_irritate": fulgrim.irritate(5),
+     "m_irritate": fulgrim.irritate(10),
+     "l_irritate": fulgrim.irritate(15),
+     "anger": fulgrim.display_anger(),
+     "codeterm": fulgrim},
+    {"name": jon.display_name(),
+     "val" : jon.display(),
+     "room": jon.display_mroom(),
+     "s_irritate": jon.irritate(5),
+     "m_irritate": jon.irritate(10),
+     "l_irritate": jon.irritate(15),
+     "anger": jon.display_anger(),
+     "codeterm": jon},
+    {"name":whalen.display_name(),
+     "val" : whalen.display(),
+     "room": whalen.display_mroom(),
+     "s_irritate": whalen.irritate(5),
+     "m_irritate": whalen.irritate(10),
+     "l_irritate": whalen.irritate(15),
+     "anger": whalen.display_anger(),
+     "codeterm": whalen},
+    {"name":wizard.display_name(),
+     "val" : wizard.display(),
+     "room": wizard.display_mroom(),
+     "s_irritate": wizard.irritate(5),
+     "m_irritate": wizard.irritate(10),
+     "l_irritate": wizard.irritate(15),
+     "anger": wizard.display_anger(),
+     "codeterm": wizard},
+    {"name":sydney.display_name(),
+     "val" : sydney.display(),
+     "room": sydney.display_mroom(),
+     "s_irritate": sydney.irritate(5),
+     "m_irritate": sydney.irritate(10),
+     "l_irritate": sydney.irritate(15),
+     "anger": sydney.display_anger(),
+     "codeterm": sydney},
+    {"name":house.display_name(),
+     "val" : house.display(),
+     "room": house.display_mroom(),
+     "s_irritate": house.irritate(5),
+     "m_irritate": house.irritate(10),
+     "l_irritate": house.irritate(15),
+     "anger": house.display_anger(),
+     "codeterm": house},
+    {"name":kevin.display_name(),
+     "val" : kevin.display(),
+     "room": kevin.display_mroom(),
+     "s_irritate": kevin.irritate(5),
+     "m_irritate": kevin.irritate(10),
+     "l_irritate": kevin.irritate(15),
+     "anger": kevin.display_anger(),
+     "codeterm": kevin}
+]
+
+
+weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
+
+count=0
+murderer_choose = random.choice(chars)
+while count < 10:
+    count+=1
+    char_list.append(murderer_choose["name"])
+count=0
+murderer = murderer_choose["name"]
+murder_room = random.choice(rooms)
+while count < 10:
+    count+=1
+    rooms.append(murder_room)
+count=0
+murder_weapon = random.choice(weapon)
+weapon.append(murder_weapon)
+while count < 10:
+    count+=1
+    weapon.append(murder_weapon)
+#print(murder["val"])
+
+char_dialogues = [
+    {"name": cecil.display_name(),
      "intro": "\nHello there! I see you've heard about the death of our friend, Caesar sure was a good one.\n-----",
      "initial_1" : "\nOh you know, it's standard for a few interns- ahem. Students- not to make it through the testing process :)\n-----",
-     "initial_2" : "\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{person} was walking around {room} with {weapon} a while ago, but I wouldn't think much of it.\n-----",
+     "initial_2" : f"\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{random.choice(char_list)} was walking around {random.choice(rooms)} with {random.choice(weapon)} a while ago, but I wouldn't think much of it.\n-----",
      "initial_3" : "\nHah- killed? Julius? What next, you'll be accusing me of purchasing wheat and wheat byproducts? What kind of blasphemy do you think I am?\n----- ",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "\nLike I said, this happens often. I wouldn't be worried.\n-----",
@@ -52,9 +145,7 @@ chars = [
          f"From his pockets he takes out what seems to be a mobile portable radio broadcasting system, {cecil.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name": fulgrim.display_name(), 
-     "val" : fulgrim.display(),
-     "room": fulgrim.display_mroom(),
-          "intro": "",
+     "intro": "",
      "initial_1" : "",
      "initial_2" : "",
      "initial_3" : "",
@@ -68,14 +159,12 @@ chars = [
          "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name": jon.display_name(),
-     "val" : jon.display(),
-     "room": jon.display_mroom(),
      "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
          "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
      "initial_1" : "\nI am fine, but it does not seem that everyone else appears to be as well.\n-----",
      "initial_2" : "\nYou certainly have some nerve to interrupt an archival recording.\n"
-         "I do believe I may have seen {person} carrying {weapon} around... and there was a strange sound coming "
-         "from {room} as well, but I cannot be sure.\n-----",
+         f"I do believe I may have seen {random.choice(char_list)} carrying {random.choice(weapon)} around... and there was a strange sound coming "
+         f"from {random.choice(rooms)} as well, but I cannot be sure.\n-----",
      "initial_3" : "\nExcuse me? What makes you think I would do such a thing as to *murder* a peer of mine, however much I may dislike them?\n-----",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "\nIndeed.\n-----",
@@ -84,11 +173,9 @@ chars = [
      "thanks" : "\n[watches you leave]\n---",
      "goodbye" : "\nGood riddance. please do not return.\n-----",
      "search": "\nYou demand Jonathan Sims to empty his pockets, which takes quite a while of convincing for him to comply. "
-         "From his pockets he takes out what seems to be a human rib, {self.weapon}, and {random_item}. "
+         f"From his pockets he takes out what seems to be a human rib, {jon.display_mweapon}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":whalen.display_name(),
-     "val" : whalen.display(),
-     "room": whalen.display_mroom(),
      "intro": "",
      "initial_1" : "",
      "initial_2" : "",
@@ -103,11 +190,9 @@ chars = [
          "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":wizard.display_name(),
-     "val" : wizard.display(),
-     "room": wizard.display_mroom(),
      "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
      "initial_1" : "\nThe wizard does not speak, but whether or not it is unable or does not choose to; you do not know.\n-----",
-     "initial_2" : "\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {person} in {room}, and you think you might see a glimpse of {weapon}.",
+     "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {random.choice(char_list)} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
      "initial_3" : "\nThe Wizard's expression shifts slightly, as if taken aback. You fear you may have angered them.",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "\nThey nod, but you are unsure if the gesture is truly directed towards you.\n-----",
@@ -116,14 +201,12 @@ chars = [
      "thanks" : "You feel the wizard's gaze on your back as you leave.",
      "goodbye" : "The wizard's glare, though not initially with ill intent, is now accompanies by an acute irritiation that pierces right through you.\n-----",
      "search": "\nYou lift up the wizard's hat, and immediately regret this decision, as you remember in one of your history classes that touching a wizard's hat is the sign of utmost disrespect. "
-         "The wizard undoubtedly despises you now, and under their hat you can see {random.item}, {self.weapon}, and a mysterious orb. "
+         f"The wizard undoubtedly despises you now, and under their hat you can see {random.choice(items)}, {wizard.display_mweapon()}, and a mysterious orb. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":sydney.display_name(),
-     "val" : sydney.display(),
-     "room": sydney.display_mroom(),
      "intro": "\nHey! There seems to be a lot of commotion this morning, right? [awkward chuckle]\n-----",
      "initial_1" : "\nSorry? Is there something that happened?\n-----",
-     "initial_2" : "\nNothing much! Just the rain... falling down... down... and down...\nI also did find {weapon} when looking around {room}, right after {person} walked out!\nNot sure why you'd need to know that, though.\n----- ",
+     "initial_2" : f"\nNothing much! Just the rain... falling down... down... and down...\nI also did find {random.choice(weapon)} when looking around {random.choice(rooms)}, right after {random.choice(char_list)} walked out!\nNot sure why you'd need to know that, though.\n----- ",
      "initial_3" : "\nShe's dead?? I can't believe this... and you think I'd be the one to kill her?\n",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
      "unfortunate_1": "Julius is dead?? Caesar? Julius Caesar? Oh I knew those birds would drive us all crazy one day. They've been singing about the Ides of March for as long as I can remember. How unfortunate.\n-----",
@@ -132,12 +215,10 @@ chars = [
      "thanks" : "\nOf course! I do hope you find who killed Julius, I sure will miss her...\n-----",
      "goodbye" : "\nAnd you're just leaving. Alright. I see. Bye?\n-----",
      "search": "You demand Sydney to empty his pockets, to which he gets very defensive and annoyed. Eventually however, he does. "
-         "From his pockets he takes out a jar of worms, {self.weapon}, and {random_item}. "
+         f"From his pockets he takes out a jar of worms, {sydney.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":house.display_name(),
-     "val" : house.display(),
-     "room": house.display_mroom(),
-          "intro": "",
+    "intro": "",
      "initial_1" : "",
      "initial_2" : "",
      "initial_3" : "",
@@ -148,12 +229,10 @@ chars = [
      "thanks" : "",
      "goodbye" : "",
      "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
+         "From [their] pockets [they] take out what seems to be {random item}, {self weapon}, and {random item}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":kevin.display_name(),
-     "val" : kevin.display(),
-     "room": kevin.display_mroom(),
-          "intro": "",
+     "intro": "",
      "initial_1" : "",
      "initial_2" : "",
      "initial_3" : "",
@@ -164,14 +243,9 @@ chars = [
      "thanks" : "",
      "goodbye" : "",
      "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
+         "From [their] pockets [they] take out what seems to be {random item}, {self weapon}, and {random item}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
 ]
 
-weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 
-murderer_choose = random.choice(chars)
-murderer = murderer_choose["name"]
-murder_room = random.choice(rooms)
-murder_weapon = random.choice(weapon)
-#print(murder["val"])
+#print(murderer,"\n",murder_room,"\n",murder_weapon)
