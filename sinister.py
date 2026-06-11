@@ -1,10 +1,10 @@
 import evil
 import writing # imports writing system
 from playerclass import play
-from murderer import Body_Room
-from murderer import Murderer
+from evil import murder_room
+from murderer import bodyfacts
 # from main import initialize
-from writing import inspectjuli
+# from murderer import inspectjuli
 actionswpeople = ["See room", "Leave Room", "Write Clues Down", "Check Notebook","Interact","Leave Room and Return to Supply Closet [SLEEP]"]
 # actionswnpp = ["See room", "Leave Room", "Write Clues Down", "Check Notebook"]
 def people(room):
@@ -94,7 +94,7 @@ rooms = [
     
     ]
 
-# inital interaction value thign  - use a class for detective's variables 
+
 global roomneeded
 global roomwithin
 roomwithin = "nowhere"
@@ -115,8 +115,9 @@ def go_to_sleep():
     #                     print()
     #                     print("Your time has ran out. You need to determine who the murder is, and with the info your investigation collected, "
     # "convince your peers to barricade them away before they come after you.")
-    
+
 def enterroom():
+    global murder_room
     location = "none"
     sleeping = False
     while location == "none":
@@ -129,32 +130,31 @@ def enterroom():
              print("Not a valid room.")
              c_location = (input("What room would you like to enter? Please enter a number:  "))
              c_location = int(c_location)
-        # if ValueError or :
-        #             print("That's not a number, or it doesn't correspond to a valid option! Try again.")
-        #             c_location = int(input("What room would you like to enter? Please enter a number:  "))
-        # else:
-        #     break
-        # if c_location == 7:
-        #     play.checkinteraction()
-        #     if play.CanSleep == False: 
-        #         print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
-        #         enterroom()
-        #     else:
-        #             print("After deciding you're done with your investigation, you retire for the day.")
-        #             print("~")
-        #             print("You awake the next morning, still unfortunately trapped.")
-        #             play.bedtime()
-        #             enterroom()
         location = rooms[c_location]
         print(location["disp"])
         global roomneeded 
         global roomwithin
         roomneeded = location["codeterm"]
         roomwithin = location["name"]
+        print(roomwithin, murder_room)
+        
+def inspectjuli():
+     global murder_room
+     global roomwithin
+     yaona = ["Yes", "No"]
+     if murder_room == roomwithin:
+        print("Julius is in this room. Do you wish to look closer?")
+        for index, option in enumerate(yaona):
+            print(index, ":", option)
+        choice = int(input("Enter the corresponding integer:"))
+        if choice == 0:
+         print("You step over to where she lies.")
+         bodyfacts()
+        else:
+         print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
 
-    
 def makeanaction():
-        global Body_Room
+        global murder_room
         global roomneeded
         global roomwithin 
         a = False
@@ -169,6 +169,7 @@ def makeanaction():
                 else:
                     play.raiseinteractioncount()
                     print("displaying tkinter window")
+                    inspectjuli()
             elif act == 1:
                 print("You have left the room.")
                 enterroom()
@@ -186,9 +187,9 @@ def makeanaction():
                  roomneeded.printpeople()
             elif act == 5: 
                 go_to_sleep()
+                return "BEDDED_TIME"
 
-    
-
+         
 
 # MEAT ABOVE ^^^ Below.. Succint version of what is being done. 
 
