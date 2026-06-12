@@ -146,7 +146,6 @@ def enterroom():
         global roomwithin
         roomneeded = location["codeterm"]
         roomwithin = location["name"]
-        print(roomwithin, murder_room)
         
 def inspectjuli():
      global murder_room
