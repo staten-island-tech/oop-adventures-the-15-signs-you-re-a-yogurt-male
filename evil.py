@@ -126,18 +126,18 @@ char_dialogues = [
          f"From his pockets he takes out what seems to be a mobile portable radio broadcasting system, {cecil.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name": fulgrim.display_name(), 
-     "intro": "",
-     "initial_1" : "",
-     "initial_2" : "",
-     "initial_3" : "",
+     "intro": "Hello, peer. I'm going to assume you're here to discuss Caeser.",
+     "initial_1" : "Yes, it is. Try not to dwell on it though, lest you lose focus.",
+     "initial_2" : f"\nErr.. I did see {rand_char()} speaking to them the day before they died. \n If only Ferrus were here.. He'd probably be able to tell you what weapon was used.",
+     "initial_3" : "\nYou're telling me you believe I killed Julius? There's no reason for me to do so! \n Even if there was... come on. You're insulting my handiwork.",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "",
-     "no": "",
-     ">:[": "",
-     "thanks" : "",
-     "goodbye" : "",
-     "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
+     "unfortunate_1": "Yes. Death can be unavoidable, but in this instance, it clearly was not.",
+     "no": "Urgh. Do you enjoy being stubborn and wrong?",
+     ">:[": "Why are you still in my presence? Shoo.",
+     "thanks" : "You're welcome. Best of luck finding the murderer.",
+     "goodbye" : "Farewell.",
+     "search": "\nYou demand Fulgrim to empty their pockets, and they briefly pause to consider if opposing you is worth it, before complying. "
+         f"From their pockets they take out what seems to be a silver friendship bracelet, {fulgrim.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name": jon.display_name(),
      "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
@@ -157,18 +157,18 @@ char_dialogues = [
          f"From his pockets he takes out what seems to be a human rib, {jon.display_mweapon}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":whalen.display_name(),
-     "intro": "",
-     "initial_1" : "",
-     "initial_2" : "",
-     "initial_3" : "",
+     "intro": "Morning. We're one peer short today.",
+     "initial_1" : "Alright. Someone /is/ dead, after all.",
+     "initial_2" : f"Well.. {rand_char()} = islikelyMurderer, just like print(JuliusDiedin) prints {random.choice(rooms)}",
+     "initial_3" : "How could you say that when ImSinister = False.. :(",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "",
-     "no": "",
-     ">:[": "",
-     "thanks" : "",
-     "goodbye" : "",
-     "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random.item}, {self.weapon}, and {random_item}. "
+     "unfortunate_1": "Yes. Students dying is not a good thing?? ",
+     "no": "Do you want to bet?",
+     ">:[": "[distant explosion sound effects]",
+     "thanks" : "You're welcome.",
+     "goodbye" : "Goodbye.",
+     "search": "\nYou demand Whalen to empty his pockets, which takes quite a while of convincing for him to comply. "
+         f"From his pockets he takes out what seems to be 5 live rats, {whalen.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name": wizard.display_name(),
       "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
@@ -199,32 +199,32 @@ char_dialogues = [
          f"From his pockets he takes out a jar of worms, {sydney.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":house.display_name(),
-    "intro": "",
-     "initial_1" : "",
-     "initial_2" : "",
-     "initial_3" : "",
+    "intro": "Hey. What's up.",
+     "initial_1" : "Oh, just awesome.. Who doesn't enjoy a good whodunnit?",
+     "initial_2" : f"\n Now that you mention it, I did see a dead Julius. Oh, you meant other than that? I saw {rand_char()} brandishing a {random.choice(weapon)} earlier.",
+     "initial_3" : f"What a wild, baseless thing to say! Only stupid people pick the stupid option. You are stupid.",
      "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "",
-     "no": "",
-     ">:[": "",
-     "thanks" : "",
-     "goodbye" : "",
-     "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random item}, {self weapon}, and {random item}. "
+     "unfortunate_1": "..Interesting tone. You want me to agree with you on that, right? ",
+     "no": "You are a terrible detective, especially if you believe I've done it.",
+     ">:[": "You've vexed me.",
+     "thanks" : "You're welcomee!",
+     "goodbye" : "Bye.",
+     "search": "\nYou demand House to empty his pockets, which takes quite a while of convincing for him to comply. "
+         f"\nFrom his pockets he takes out what seems to be {house.display_mweapon()}, and {house.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":kevin.display_name(),
-     "intro": "",
-     "initial_1" : "",
-     "initial_2" : "",
-     "initial_3" : "",
-     "initial_4" : "\nAre you sure you want to search this character? You will gain no useful information from this action.\n-----",
-     "unfortunate_1": "",
-     "no": "",
-     ">:[": "",
-     "thanks" : "",
-     "goodbye" : "",
-     "search": "\nYou demand ______ to empty [their] pockets, which takes quite a while of convincing for [them] to comply. "
-         "From [their] pockets [they] take out what seems to be {random item}, {self weapon}, and {random item}. "
+     "intro": "[The tremere only looks up at you from their book once you clear your throat.] \n Yes, hello?",
+     "initial_1" : "\nPretty GREAT. Who doesn’t love being stuck in an ancient school building, \n barely holding off a catastrophic flood with a dead body and murderer.",
+     "initial_2" : f"\n No, no! Nothing particularly unusual aside from the damn exsanguinated body of our classmate! \n...Actually, I did see {rand_char()} having a heated discussion with Julius while she was still, you know...",
+     "initial_3" : "\nNo???? Is this how you are investigating people? \n Going up to them, asking if they’re the murderer? Nice work, detective.",
+     "initial_4" : "\nAre you sure you want to search the Tremere? You will gain no useful information from this action.\n-----",
+     "unfortunate_1": "Yeah, murders do tend to be a bad thing. ",
+     "no": "I am a vampire WIZARD, not a vampire MURDERER. You sound ridiculous!",
+     ">:[": "Why are you still speaking??",
+     "thanks" : "No, thank you. I’m *sure* you’ll find the killer with your stellar sleuthing skills.",
+     "goodbye" : "Good riddance.",
+     "search": "\nYou demand Kevin to empty his pockets, which takes quite a while of convincing for him to comply. "
+         f"From his pockets he takes out what seems to be a Garg-O's rewards card, {kevin.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
 ]
 
