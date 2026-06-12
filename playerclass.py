@@ -28,4 +28,4 @@ class detective:
          self.TotalEnergy = 5
          self.CanSleep = False
 
-play = detective(str(input("Before we begin, what is your name?:")),0, False, 5, True)
+play = detective(str(input("Before we begin, what is your name?:")),0, False, 3, True)

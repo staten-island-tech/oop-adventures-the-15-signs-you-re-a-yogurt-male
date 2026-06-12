@@ -26,7 +26,7 @@ def initialize():
     "You were supposed to have been left with a sub, but they hightailed it as soon as the streets began to flood.", 
     "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
     "Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead by your peers.",
-    "It's up to you, now, to put the story of her murder together within 3 days. \n On the morning of the third, you must have enough evidence to put Julius' story together."
+    "It's up to you, now, to put the story of her murder together within 3 days. \n On the morning of the third, you must have enough evidence to put Julius' story together. \n Additionally, you will have a limited amount of energy you can spend furthering your investigation.\n Each interaction you make will tire you."
  ]
     for line in intro_writing: 
          print(line)
