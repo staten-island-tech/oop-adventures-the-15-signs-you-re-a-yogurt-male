@@ -210,7 +210,7 @@ char_dialogues = [
      "thanks" : "You're welcomee!",
      "goodbye" : "Bye.",
      "search": "\nYou demand House to empty his pockets, which takes quite a while of convincing for him to comply. "
-         f"\nFrom his pockets he takes out what seems to be {house.display_mweapon()}, and {house.choice(items)}. "
+         f"\nFrom his pockets he takes out what seems to be {house.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"name":kevin.display_name(),
      "intro": "[The tremere only looks up at you from their book once you clear your throat.] \n Yes, hello?",
