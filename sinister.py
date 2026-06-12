@@ -11,7 +11,7 @@ def people(room):
     p_list = []
     for char in evil.chars:
         if char["room"] == room:
-            p_list.append(char["name"])
+            p_list.append(char["codeterm"])
     # print(p_list)
     return p_list
  
@@ -23,7 +23,10 @@ class room:
         self.desc = desc
         self.people = people
     def display_room(self):
-        info = (f"You are now in {self.name}.\n{self.desc}\nPeople:{self.people}")
+        p_list = []
+        for person in self.people:
+            p_list.append(person.display_name())
+        info = (f"You are now in {self.name}.\n{self.desc}\nPeople:{p_list}")
         return info
     def show_room(self):
         #insert code for image display
@@ -34,10 +37,17 @@ class room:
             (self.people).append("Nobody")
             print("There is nobody here to speak to.")
         else:
+            p_list = []
+            p_listt = []
+            for person in self.people:
+                p_list.append(person.display_name())
+            for person in self.people:
+                p_listt.append(person)
+            info = (f"You are now in {self.name}.\n{self.desc}\nPeople:{p_list}")
             for indexnumb, person in enumerate(self.people):
-                print(indexnumb, ":", person)
+                print(indexnumb, ":", person.display_name())
             speak = int(input("Who would you like to speak to?"))
-            print(f"Atm, you {play.pname} speaking to: {self.people[speak]}. WHEN DIALOG FUNCTION DONE, CHANGE THIS LINE! ")
+            evil.interact(speak, p_listt)
    
     def countpeople(self):
         peoplecount = len(self.people)

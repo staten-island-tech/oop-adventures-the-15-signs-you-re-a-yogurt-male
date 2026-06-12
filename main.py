@@ -2,7 +2,7 @@
 import random
 from sinister import enterroom
 from sinister import makeanaction
-# first murderer EVER generated: mr. whalen 
+# first murderer EVER gener  ed: mr. whalen 
 Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
 global Body_Room
