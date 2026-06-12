@@ -1,7 +1,9 @@
 import random
 
 rooms = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "Engineering Henriques", "Gym", "Goyco Russian"]
+roomsl = ["Cafeteria", "Compsci Lab", "Auditorium", "Secret pool on the roof", "Engineering Henriques", "Gym", "Goyco Russian"]
 weaponl = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
+weaponl2 = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bricks", "Scurvy Potion", "Sword", "Wizard's Curse"]
 items = ["lint", "spare change", 'a red pen', 'a rat', "a crumpled origami crane", "glitter", "the jawbone", "a wet rock", "common loon"]
 
 class Char:
