@@ -25,7 +25,7 @@ def initialize():
     "You were supposed to have been left with a sub, but they hightailed it as soon as the streets began to flood.", 
     "It was frightening to be without guidance in a crisis, but atleast you were safe in here! You remembered thinking. ",
     "Those thoughts were then proven wrong, when one of your classmates, Julius, was found dead by your peers.",
-    "It's up to you, now, to put the story of her murder together."
+    "It's up to you, now, to put the story of her murder together within 3 days."
  ]
     for line in intro_writing: 
          print(line)
@@ -50,6 +50,5 @@ def rungame():
         enterroom()
         if makeanaction() == "BEDDED_TIME":
             NUMBDAY += 1 
-            print("Time", NUMBDAY)
     print("You have run out of time..")
 rungame()
