@@ -137,11 +137,11 @@ def enterroom():
         play.checkenergy()
         for index, item in enumerate(rooms):
             print(f"{index}: {item["name"]}")
-        c_location = (input("What room would you like to enter? Please enter a number:  "))
+        c_location = (input("\nWhat room would you like to enter? Please enter a number:  "))
         c_location = int(c_location)
         if c_location > 6 or c_location < 0:
              print("Not a valid room.")
-             c_location = (input("What room would you like to enter? Please enter a number:  "))
+             c_location = (input("\nWhat room would you like to enter? Please enter a number:  "))
              c_location = int(c_location)
         location = rooms[c_location]
         print(location["disp"])

@@ -187,7 +187,7 @@ char_dialogues = [
          f"The wizard undoubtedly despises you now, and under their hat you can see {random.choice(items)}, {wizard.display_mweapon()}, and a mysterious orb. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"codeterm":sydney,
-     "intro": "\nHey! There seems to be a lot of commotion this morning, right? [awkward chuckle]\n-----",
+     "intro": "\nHey! There seems to be a lot of commotion this morning, right?\n-----",
      "initial_1" : "\nSorry? Is there something that happened?\n-----",
      "initial_2" : f"\nNothing much! Just the rain... falling down... down... and down...\nI also did find {random.choice(weapon)} when looking around {random.choice(rooms)}, right after {rand_char()} walked out!\nNot sure why you'd need to know that, though.\n----- ",
      "initial_3" : "\nShe's dead?? I can't believe this... and you think I'd be the one to kill her?\n",
