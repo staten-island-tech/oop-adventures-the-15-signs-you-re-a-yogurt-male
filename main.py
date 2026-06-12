@@ -2,6 +2,7 @@
 import random
 from sinister import enterroom
 from sinister import makeanaction
+from finish import run_end
 # first murderer EVER gener  ed: mr. whalen 
 Murderedrooms_list = ["Cafeteria","Compsci Lab", "Goyco Room", "Gymnasium", "Library", "Henriques Engineering", "Secret pool on the roof","Auditorium" ]
 character_list = ["fulgrim", "house","whalen", "jon","wizard","kevin","cecil","sydney"]
@@ -50,5 +51,6 @@ def rungame():
         enterroom()
         if makeanaction() == "BEDDED_TIME":
             NUMBDAY += 1 
-    print("You have run out of time..")
+    print("You have run out of time.. Now, you must use the clues you've gathered to determine who is the murderer.")
+    run_end()
 rungame()

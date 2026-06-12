@@ -104,16 +104,18 @@ rooms = [
     
     ]
 
-
+global location
 global roomneeded
 global roomwithin
+location = "not yet updated"
 roomwithin = "nowhere"
 roomneeded = "placeholder, not yet updated"
 def go_to_sleep():
+            global location
             play.checkinteraction()
             if play.CanSleep == False: 
                 print("Are you genuinely trying to go back to sleep without doing anything? Get back out there!")
-                enterroom()
+                location = None
             else:
                     print("After deciding you're done with your investigation, you retire for the day.")
                     print("~")
@@ -128,6 +130,7 @@ def go_to_sleep():
 
 def enterroom():
     global murder_room
+    global location
     location = "none"
     sleeping = False
     while location == "none":
