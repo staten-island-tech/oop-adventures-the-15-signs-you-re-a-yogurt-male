@@ -125,7 +125,7 @@ char_dialogues = [
      "search": "\nYou demand Cecil Palmer to empty his pockets; while he gladly complies, every surface of his pants seems to have a pocket, and it takes a while for him to go through all of them. "
          f"From his pockets he takes out what seems to be a mobile portable radio broadcasting system, {cecil.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name": fulgrim.display_name(), 
+    {"codeterm": fulgrim, 
      "intro": "Hello, peer. I'm going to assume you're here to discuss Caeser.",
      "initial_1" : "Yes, it is. Try not to dwell on it though, lest you lose focus.",
      "initial_2" : f"\nErr.. I did see {rand_char()} speaking to them the day before they died. \n If only Ferrus were here.. He'd probably be able to tell you what weapon was used.",
@@ -156,7 +156,7 @@ char_dialogues = [
      "search": "\nYou demand Jonathan Sims to empty his pockets, which takes quite a while of convincing for him to comply. "
          f"From his pockets he takes out what seems to be a human rib, {jon.display_mweapon}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name":whalen.display_name(),
+    {"codeterm":whalen,
      "intro": "Morning. We're one peer short today.",
      "initial_1" : "Alright. Someone /is/ dead, after all.",
      "initial_2" : f"Well.. {rand_char()} = islikelyMurderer, just like print(JuliusDiedin) prints {random.choice(rooms)}",
@@ -198,7 +198,7 @@ char_dialogues = [
      "search": "You demand Sydney to empty his pockets, to which he gets very defensive and annoyed. Eventually however, he does. "
          f"From his pockets he takes out a jar of worms, {sydney.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name":house.display_name(),
+    {"codeterm":house,
     "intro": "Hey. What's up.",
      "initial_1" : "Oh, just awesome.. Who doesn't enjoy a good whodunnit?",
      "initial_2" : f"\n Now that you mention it, I did see a dead Julius. Oh, you meant other than that? I saw {rand_char()} brandishing a {random.choice(weapon)} earlier.",
@@ -212,7 +212,7 @@ char_dialogues = [
      "search": "\nYou demand House to empty his pockets, which takes quite a while of convincing for him to comply. "
          f"\nFrom his pockets he takes out what seems to be {house.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name":kevin.display_name(),
+    {"codeterm":kevin,
      "intro": "[The tremere only looks up at you from their book once you clear your throat.] \n Yes, hello?",
      "initial_1" : "\nPretty GREAT. Who doesn’t love being stuck in an ancient school building, \n barely holding off a catastrophic flood with a dead body and murderer.",
      "initial_2" : f"\n No, no! Nothing particularly unusual aside from the damn exsanguinated body of our classmate! \n...Actually, I did see {rand_char()} having a heated discussion with Julius while she was still, you know...",
