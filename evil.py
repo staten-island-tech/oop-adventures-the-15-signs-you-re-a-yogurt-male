@@ -111,7 +111,7 @@ def rand_char():
         return character.display_name()
 
 char_dialogues = [
-    {"name": cecil.display_name(),
+    {"codeterm": cecil,
      "intro": "\nHello there! I see you've heard about the death of our friend, Caesar sure was a good one.\n-----",
      "initial_1" : "\nOh you know, it's standard for a few interns- ahem. Students- not to make it through the testing process :)\n-----",
      "initial_2" : f"\nHave I seen anything? I've seen many a things. \nAh- you mean about Julius.\n{rand_char()} was walking around {random.choice(rooms)} with {random.choice(weapon)} a while ago, but I wouldn't think much of it.\n-----",
@@ -139,7 +139,7 @@ char_dialogues = [
      "search": "\nYou demand Fulgrim to empty their pockets, and they briefly pause to consider if opposing you is worth it, before complying. "
          f"From their pockets they take out what seems to be a silver friendship bracelet, {fulgrim.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name": jon.display_name(),
+    {"codeterm": jon,
      "intro": "\n15 March, undisclosed year, regarding the death of Julius Caesar. \nStatement begins...\n"
          "It is not often that I find myself facing the murder of a classmate within a school building,\n-----",
      "initial_1" : "\nI am fine, but it does not seem that everyone else appears to be as well.\n-----",
@@ -170,7 +170,7 @@ char_dialogues = [
      "search": "\nYou demand Whalen to empty his pockets, which takes quite a while of convincing for him to comply. "
          f"From his pockets he takes out what seems to be 5 live rats, {whalen.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name": wizard.display_name(),
+    {"codeterm": wizard,
       "intro": "\nThe wizard watches you intently, not in a hostile way; but rather, with curiosity and a wisdom that you can only hope to grasp one day.\n-----",
       "initial_1" : "\nThe wizard does not speak, but whether or not it is unable or does not choose to; you do not know.\n-----",
       "initial_2" : f"\nWhile they do not say any words, the Wizard conjures a hazy scene that seems to picture {rand_char()} in {random.choice(rooms)}, and you think you might see a glimpse of {random.choice(weapon)}.",
@@ -184,7 +184,7 @@ char_dialogues = [
       "search": "\nYou lift up the wizard's hat, and immediately regret this decision, as you remember in one of your history classes that touching a wizard's hat is the sign of utmost disrespect. "
          f"The wizard undoubtedly despises you now, and under their hat you can see {random.choice(items)}, {wizard.display_mweapon()}, and a mysterious orb. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
-    {"name":sydney.display_name(),
+    {"codeterm":sydney,
      "intro": "\nHey! There seems to be a lot of commotion this morning, right? [awkward chuckle]\n-----",
      "initial_1" : "\nSorry? Is there something that happened?\n-----",
      "initial_2" : f"\nNothing much! Just the rain... falling down... down... and down...\nI also did find {random.choice(weapon)} when looking around {random.choice(rooms)}, right after {rand_char()} walked out!\nNot sure why you'd need to know that, though.\n----- ",
@@ -271,197 +271,202 @@ dialogues = [
 ]
        
 
-def d_setup(num, char):
-    ch = char_list[char]
-    if ch.display_anger() < 25:
+def d_setup(num, char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() < 20:
         for index, option in enumerate(dialogues[num]["qs"]):
             print(index,":", option)
-def response(char, resp):
-    print(char_dialogues[char][resp])
-def iirritate(char, amount):
-    ch = char_list[char]
+def response(char, resp, p_list):
+    d_list = []
+    for dlogs in char_dialogues:
+        for term in p_list:
+            if dlogs["codeterm"] == term:
+                d_list.append(dlogs)
+    print(d_list[char][resp])
+def iirritate(char, amount, p_list):
+    ch = p_list[char]
     ch.irritate(amount)
     print(ch.display_anger())
 
 
 #How have you been holding up?
-def initial_1(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def initial_1(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         #It sure is unfortunate that Julius has died...
-            response(char, "unfortunate_1")
-            d_setup(5, char)
-            unfortunate(char)
+            response(char, "unfortunate_1", p_list)
+            d_setup(5, char, p_list)
+            unfortunate(char, p_list)
         elif select == 1:                                         #Hey so. Did you kill Julius
             iirritate(char, 10)
-            response(char, "initial_3")
-            d_setup(3, char)
-            initial_3(char)
+            response(char, "initial_3", p_list)
+            d_setup(3, char, p_list)
+            initial_3(char, p_list)
         elif select == 2:                                         #Have you seen anything unusual lately perhaps?
-            response(char, "initial_2")
-            d_setup(2, char)  
-            initial_2(char)
+            response(char, "initial_2", p_list)
+            d_setup(2, char, p_list)  
+            initial_2(char, p_list)
         elif select == 3:                                         #[Search character]
-            response(char, "initial_4")
-            d_setup(4, char)
-            initial_4(char)
+            response(char, "initial_4", p_list)
+            d_setup(4, char, p_list)
+            initial_4(char, p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            initial_1(char)
+            initial_1(char, p_list)
 
 #Have you seen anything lately
-def initial_2(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def initial_2(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         #Okay, thank you!
-            response(char, "thanks")
+            response(char, "thanks", p_list)
         elif select == 1:                                         #Goodbye
-            iirritate(char, 5)
-            response(char, "goodbye")
+            iirritate(char, 5, p_list)
+            response(char, "goodbye", p_list)
         elif select == 2:                                         #[search character]
-            response(char, "initial_4")
-            d_setup(4)
-            initial_4(char)
+            response(char, "initial_4", p_list)
+            d_setup(4, char, p_list)
+            initial_4(char, p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            initial_2(char)
+            initial_2(char, p_list)
 
 #are you the one who killed julius
-def initial_3(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def initial_3(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         #well who did then?
-            response(char, "initial_2")
-            d_setup(2, char)
-            initial_2(char)
+            response(char, "initial_2", p_list)
+            d_setup(2, char, p_list)
+            initial_2(char, p_list)
         elif select == 1:                                         #Okay. Have you seen anything?
-            response(char, "initial_2")
-            d_setup(2, char)
-            initial_2(char)
+            response(char, "initial_2", p_list)
+            d_setup(2, char, p_list)
+            initial_2(char, p_list)
         elif select == 2:                                         #I don't believe you
-            iirritate(char, 10)
-            response(char, "no")
-            d_setup(6, char)
-            accusation(char)
+            iirritate(char, 10, p_list)
+            response(char, "no", p_list)
+            d_setup(6, char, p_list)
+            accusation(char, p_list)
         elif select == 3:                                         #Goodbye
-            iirritate(char, 5, char)
-            response(char, "goodbye")
+            iirritate(char, 5, p_list)
+            response(char, "goodbye", p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            initial_3(char)
+            initial_3(char, p_list)
 
 #search char
-def initial_4(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def initial_4(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         #yes
-            iirritate(char, 15)
-            response(char, "search")
+            iirritate(char, 15, p_list)
+            response(char, "search", p_list)
         elif select == 1:                                       #no
-            iirritate(char, 5)
-            response(char, "goodbye")
+            iirritate(char, 5, p_list)
+            response(char, "goodbye", p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            initial_4(char)
+            initial_4(char, p_list)
 
 #it sure is unfortunate that julius has died...
-def unfortunate(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def unfortunate(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         #Have you seen anything unusual lately perhaps?
-            response(char, "initial_2")
-            d_setup(2, char)
-            initial_2(char)
+            response(char, "initial_2", p_list)
+            d_setup(2, char, p_list)
+            initial_2(char, p_list)
         elif select == 1:                                         #Hey so. Did you kill Julius
-            iirritate(char, 10)
-            response(char, "initial_3")
-            d_setup(3, char)
-            initial_3(char)
+            iirritate(char, 10, p_list)
+            response(char, "initial_3", p_list)
+            d_setup(3, char, p_list)
+            initial_3(char, p_list)
         elif select == 2:                                         #Goodbye
-            iirritate(char, 5)
-            response(char, "goodbye")
+            iirritate(char, 5, p_list)
+            response(char, "goodbye", p_list)
         elif select == 3:                                         #[search character]
-            response (char, "search")
-            d_setup(4, char)
-            initial_4(char)
+            response (char, "search", p_list)
+            d_setup(4, char, p_list)
+            initial_4(char, p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            unfortunate(char)
+            unfortunate(char, p_list)
 
 #i don't believe you
-def accusation(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def accusation(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                           #>:[
-            iirritate(char, 10)
-            response(char, "no")
-            d_setup(6, char)
-            accusation(char)
+            iirritate(char, 10, p_list)
+            response(char, "no", p_list)
+            d_setup(6, char, p_list)
+            accusation(char, p_list)
         elif select == 1:                                         #goodbye
-            iirritate(char, 5)
-            response(char, "goodbye")
+            iirritate(char, 5, p_list)
+            response(char, "goodbye", p_list)
         elif select == 2:                                         #[search character]
-            response(char, "initial_4")
-            d_setup(4, char)
-            initial_4(char)
+            response(char, "initial_4", p_list)
+            d_setup(4, char, p_list)
+            initial_4(char, p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            accusation(char)
+            accusation(char, p_list)
 
 #intro
-def qround_1(char):
-    ch = char_list[char]
-    if ch.display_anger() >= 25:
+def qround_1(char, p_list):
+    ch = p_list[char]
+    if ch.display_anger() >= 20:
         print("You have irritated this character past their capacity for tolerance. You can no longer interact with them.")
     else:
-        response(char, "intro")
-        d_setup(0, char)
+        response(char, "intro", p_list)
+        d_setup(0, char, p_list)
         select = int(input("Select a dialogue option:  "))
         if select == 0:                                         # How have you been holding up?
-            response(char, "initial_1")
-            d_setup(1, char)
-            initial_1(char)
+            response(char, "initial_1", p_list)
+            d_setup(1, char, p_list)
+            initial_1(char, p_list)
         elif select == 1:                                       #Hey! Have you seen anything lately?
-            response(char, "initial_2")
-            d_setup(2, char)
-            initial_2(char)
+            response(char, "initial_2", p_list)
+            d_setup(2, char, p_list)
+            initial_2(char, p_list)
         elif select == 2:                                       #Are you the one who killed Julius??
-            iirritate(char, 10)
-            response(char, "initial_3")
-            d_setup(3, char)
-            initial_3(char)
+            iirritate(char, 10, p_list)
+            response(char, "initial_3", p_list)
+            d_setup(3, char, p_list)
+            initial_3(char, p_list)
         elif select == 3:                                       #[search character]
-            response(char, "initial_4")
-            d_setup(4, char)
-            initial_4(char)
+            response(char, "initial_4", p_list)
+            d_setup(4, char, p_list)
+            initial_4(char, p_list)
         else:
             print("\nDialogue option does not exist. Please choose again")
-            qround_1(char)
+            qround_1(char, p_list)
 
 interacting = "none"
 def interact(character, p_list):
     interacting = p_list[character]
     ch = char_list[character]
     print(ch.display_anger())
-    qround_1(character)
+    qround_1(character, p_list)
         
 
 """ for index, char in enumerate(chars):
