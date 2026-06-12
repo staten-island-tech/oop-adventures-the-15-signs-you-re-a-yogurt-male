@@ -164,6 +164,8 @@ def inspectjuli():
          bodyfacts()
         else:
          print("Whether it be from confusion, fear, disgust, or indifference, you avert your eyes.")
+     else:
+         print("When you trudge around the room, you don't notice anything more than what you initially saw.")
 
 def makeanaction():
         global murder_room
@@ -180,7 +182,6 @@ def makeanaction():
                     print("Your thoughts are slowed by fatigue and your eyes are unable to focus on the details of the room around you. Get some rest!")
                 else:
                     play.raiseinteractioncount()
-                    print("displaying tkinter window")
                     inspectjuli()
             elif act == 1:
                 print("You have left the room.")
