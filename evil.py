@@ -457,15 +457,15 @@ def qround_1(char):
             qround_1(char)
 
 interacting = "none"
-def interact(character):
-    interacting = char_list[character]
+def interact(character, p_list):
+    interacting = p_list[character]
     ch = char_list[character]
     print(ch.display_anger())
     qround_1(character)
         
 
-for index, char in enumerate(chars):
+""" for index, char in enumerate(chars):
     print(index,":", char["name"])
 ask = int(input("Who would you like to interact with?  "))
-interact(ask) 
+interact(ask)  """
 
