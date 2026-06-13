@@ -175,7 +175,7 @@ def makeanaction():
         while a == False:
             for index, action in enumerate(actionswpeople):
                 print(f"{index}: {action}")
-            act = int(input("What would you like to do?:"))
+            act = int(input("\nWhat would you like to do?:"))
             if act == 0:
                 play.checkenergy()
                 if play.CanAct == False:

@@ -3,6 +3,8 @@ import evil
 def run_end():
     points = 0
 
+    print(evil.murderer, evil.murder_room, evil.murder_weapon)
+
     for char in evil.chars:
         print(char["name"])
     murderer_guessed = False

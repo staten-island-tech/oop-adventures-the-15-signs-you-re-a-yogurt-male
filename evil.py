@@ -91,26 +91,26 @@ weapon = ["The bag", "Pallete Knife", "Trombone", "Cafeteria Spoon", "Bag of Bri
 
 count=0
 murderer_choose = random.choice(char_list)
-while count < 10:
+while count < 7:
     count+=1
     char_list.append(murderer_choose)
 count=0
 murderer = murderer_choose.display_name()
 murder_room = random.choice(rooms)
-while count < 10:
+while count < 6:
     count+=1
     rooms.append(murder_room)
 count=0
 murder_weapon = random.choice(weapon)
 weapon.append(murder_weapon)
-while count < 10:
+while count < 7:
     count+=1
     weapon.append(murder_weapon)
 #print(murder["val"])
 
 def rand_char():
-    for character in char_list:
-        return character.display_name()
+    charr = random.choice(char_list)
+    return charr.display_name()
 
 char_dialogues = [
     {"codeterm": cecil,
@@ -156,7 +156,7 @@ char_dialogues = [
      "thanks" : "\n[watches you leave]\n---",
      "goodbye" : "\nGood riddance. please do not return.\n-----",
      "search": "\nYou demand Jonathan Sims to empty his pockets, which takes quite a while of convincing for him to comply. "
-         f"From his pockets he takes out what seems to be a human rib, {jon.display_mweapon}, and {random.choice(items)}. "
+         f"From his pockets he takes out what seems to be a human rib, {jon.display_mweapon()}, and {random.choice(items)}. "
          "\nThese things are of no use to you, for the weapon could have been anyone's and the other items are harmless. \n-----"},
     {"codeterm":whalen,
      "intro": "Morning. We're one peer short today.",
